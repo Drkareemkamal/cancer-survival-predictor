@@ -1,0 +1,91 @@
+Loading data from data/processed/merged_tcga_data_final.csv...
+Dataset split: 16670 train / 2941 validation samples
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights: 100%|█████████████████████| 199/199 [00:00<00:00, 13492.83it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: emilyalsentzer/Bio_ClinicalBERT
+Key                                        | Status     |  |
+-------------------------------------------+------------+--+-
+cls.predictions.transform.LayerNorm.weight | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.bias                       | [38;5;208mUNEXPECTED[0m |  |
+cls.seq_relationship.bias                  | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.transform.dense.weight     | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.decoder.weight             | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.transform.dense.bias       | [38;5;208mUNEXPECTED[0m |  |
+cls.seq_relationship.weight                | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.transform.LayerNorm.bias   | [38;5;208mUNEXPECTED[0m |  |
+
+Notes:
+- [38;5;208mUNEXPECTED:[0m	[3mcan be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+Starting training (max 20 epochs, patience=3)...
+Epoch 1/20 [Train]: 100%|██████| 2084/2084 [05:56<00:00,  5.84it/s, loss=0.3946]
+Epoch 2/20 [Train]: 100%|██████| 2084/2084 [05:57<00:00,  5.83it/s, loss=3.0676]
+Epoch 1: train_loss=1.1658  val_loss=0.9934
+  >>> New best model saved (val_loss=0.9934)
+Epoch 3/20 [Train]: 100%|██████| 2084/2084 [05:58<00:00,  5.82it/s, loss=0.0000]
+Epoch 2: train_loss=1.0408  val_loss=0.9006
+  >>> New best model saved (val_loss=0.9006)
+Epoch 4/20 [Train]: 100%|██████| 2084/2084 [05:57<00:00,  5.82it/s, loss=0.5936]
+Epoch 3: train_loss=0.9440  val_loss=0.8677
+  >>> New best model saved (val_loss=0.8677)
+Epoch 5/20 [Train]: 100%|██████| 2084/2084 [05:58<00:00,  5.81it/s, loss=0.4342]
+Epoch 4: train_loss=0.8720  val_loss=0.8249
+  >>> New best model saved (val_loss=0.8249)
+Epoch 6/20 [Train]: 100%|██████| 2084/2084 [05:58<00:00,  5.81it/s, loss=0.0812]
+Epoch 5: train_loss=0.8122  val_loss=0.7941
+  >>> New best model saved (val_loss=0.7941)
+Epoch 7/20 [Train]: 100%|██████| 2084/2084 [05:58<00:00,  5.81it/s, loss=0.1115]
+Epoch 6: train_loss=0.7347  val_loss=0.7653
+  >>> New best model saved (val_loss=0.7653)
+Epoch 8/20 [Train]: 100%|██████| 2084/2084 [05:57<00:00,  5.82it/s, loss=0.0000]
+Epoch 7: train_loss=0.7011  val_loss=0.7099
+  >>> New best model saved (val_loss=0.7099)
+Epoch 9/20 [Train]: 100%|██████| 2084/2084 [05:58<00:00,  5.81it/s, loss=0.9956]
+Epoch 8: train_loss=0.6649  val_loss=0.7331
+  --- No improvement for 1/3 epochs
+Epoch 10/20 [Train]: 100%|█████| 2084/2084 [05:59<00:00,  5.80it/s, loss=0.6819]
+Epoch 9: train_loss=0.6167  val_loss=0.6881
+  >>> New best model saved (val_loss=0.6881)
+Epoch 11/20 [Train]: 100%|█████| 2084/2084 [05:58<00:00,  5.82it/s, loss=0.5538]
+Epoch 10: train_loss=0.5849  val_loss=0.6672
+  >>> New best model saved (val_loss=0.6672)
+Epoch 12/20 [Train]: 100%|█████| 2084/2084 [05:59<00:00,  5.80it/s, loss=0.0000]
+Epoch 11: train_loss=0.5562  val_loss=0.6481
+  >>> New best model saved (val_loss=0.6481)
+Epoch 13/20 [Train]: 100%|█████| 2084/2084 [06:01<00:00,  5.76it/s, loss=0.1099]
+Epoch 12: train_loss=0.5424  val_loss=0.6050
+  >>> New best model saved (val_loss=0.6050)
+Epoch 14/20 [Train]: 100%|█████| 2084/2084 [05:45<00:00,  6.03it/s, loss=0.0000]
+Epoch 13: train_loss=0.5150  val_loss=0.6253
+  --- No improvement for 1/3 epochs
+Epoch 15/20 [Train]: 100%|█████| 2084/2084 [05:53<00:00,  5.89it/s, loss=0.4405]
+Epoch 14: train_loss=0.4998  val_loss=0.6108
+  --- No improvement for 2/3 epochs
+Epoch 16/20 [Train]: 100%|█████| 2084/2084 [05:55<00:00,  5.87it/s, loss=0.0622]
+Epoch 15: train_loss=0.4705  val_loss=0.5765
+  >>> New best model saved (val_loss=0.5765)
+Epoch 17/20 [Train]: 100%|█████| 2084/2084 [05:52<00:00,  5.92it/s, loss=0.3538]
+Epoch 16: train_loss=0.4630  val_loss=0.6028
+  --- No improvement for 1/3 epochs
+Epoch 18/20 [Train]: 100%|█████| 2084/2084 [05:58<00:00,  5.81it/s, loss=0.0270]
+Epoch 17: train_loss=0.4347  val_loss=0.5442
+  >>> New best model saved (val_loss=0.5442)
+Epoch 19/20 [Train]: 100%|█████| 2084/2084 [05:51<00:00,  5.94it/s, loss=0.0798]
+Epoch 18: train_loss=0.4230  val_loss=0.5298
+  >>> New best model saved (val_loss=0.5298)
+Epoch 20/20 [Train]: 100%|█████| 2084/2084 [05:53<00:00,  5.89it/s, loss=0.4500]
+Epoch 19: train_loss=0.4104  val_loss=0.5605
+  --- No improvement for 1/3 epochs
+/home/drkareemkamal/Documents/cancer-survival-analysis/src/training/text_finetune.py:265: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+Epoch 20: train_loss=0.4003  val_loss=0.5290
+  >>> New best model saved (val_loss=0.5290)
+Training loss plot saved to data/processed/clinicalbert_training_loss.png
+Training results CSV saved to data/processed/clinicalbert_training_results.csv
+
+Loading best model from epoch 20...
+  model.load_state_dict(torch.load(best_model_path, map_location=device))
+Pushing fine-tuned model to Hugging Face Hub: drkareemkamal/finetunePathologicalTextUsingBioBERT...
+Processing Files (1 / 1)      : 100%|██████████████| 1.19MB / 1.19MB,  319kB/s  
+New Data Upload               : 100%|██████████████| 1.19MB / 1.19MB,  319kB/s  
+  ...adapter_model.safetensors: 100%|██████████████| 1.19MB / 1.19MB            
+README.md: 5.17kB [00:00, 3.33MB/s]
+Model push complete!

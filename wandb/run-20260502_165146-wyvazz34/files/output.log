@@ -1,0 +1,83 @@
+Loading data from data/processed/merged_tcga_data_final.csv...
+config.json: 100%|█████████████████████████████| 704/704 [00:00<00:00, 1.40MB/s]
+tokenizer_config.json: 50.6kB [00:00, 26.7MB/s]
+tokenizer.json: 9.08MB [00:00, 14.5MB/s]
+special_tokens_map.json: 100%|██████████████████| 449/449 [00:00<00:00, 471kB/s]
+Dataset split: 16670 train / 2941 validation samples
+Initializing Quantized Llama-3 Model...
+pytorch_model.bin.index.json: 23.9kB [00:00, 11.1MB/s]
+Downloading (incomplete total...): 0.00B [00:00, ?B/s]                          Exception in thread Thread-auto_conversion:
+Traceback (most recent call last):                        | 0/4 [00:00<?, ?it/s]
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://huggingface.co/api/models/aaditya/Llama3-OpenBioLLM-8B/discussions?p=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/safetensors_conversion.py", line 117, in auto_conversion
+    raise e
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/safetensors_conversion.py", line 96, in auto_conversion
+    sha = get_conversion_pr_reference(api, pretrained_model_name_or_path, **cached_file_kwargs)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/safetensors_conversion.py", line 69, in get_conversion_pr_reference
+    pr = previous_pr(api, model_id, pr_title, token=token)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/safetensors_conversion.py", line 14, in previous_pr
+    for discussion in get_repo_discussions(repo_id=model_id, token=token):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 6954, in get_repo_discussions
+    discussions, has_next = _fetch_discussion_page(page_index=page_index)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 6943, in _fetch_discussion_page
+    hf_raise_for_status(resp)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 849, in hf_raise_for_status
+    raise _format(HfHubHTTPError, message, response) from e
+huggingface_hub.errors.HfHubHTTPError: (Request ID: Root=1-69f6017f-46a894024d03058c60c96aa1;8d0f186d-b649-43b5-8600-ee013db62622)
+
+403 Forbidden: Discussions are disabled for this repo.
+Cannot access content at: https://huggingface.co/api/models/aaditya/Llama3-OpenBioLLM-8B/discussions?p=0.
+Make sure your token has the correct permissions.
+Fetching 4 files: 100%|████████████████████████| 4/4 [1:04:58<00:00, 974.74s/it]
+Download complete: 100%|█████████████████| 16.1G/16.1G [1:04:59<00:00, 4.12MB/s]
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/src/training/llama_finetune.py", line 355, in <module>
+    train_and_extract(
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/src/training/llama_finetune.py", line 162, in train_and_extract
+    model = SurvivalLlamaModel(model_name=model_name).to(device)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/src/training/llama_finetune.py", line 58, in __init__
+    self.base_model = AutoModel.from_pretrained(
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 394, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4245, in from_pretrained
+    loading_info, disk_offload_index = cls._load_pretrained_model(model, state_dict, checkpoint_files, load_config)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4371, in _load_pretrained_model
+    merged_state_dict.update(load_state_dict(ckpt_file, disable_mmap=load_config.disable_mmap))
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 374, in load_state_dict
+    check_torch_load_is_safe()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/utils/import_utils.py", line 1357, in check_torch_load_is_safe
+    raise ValueError(
+ValueError: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/src/training/llama_finetune.py", line 355, in <module>
+    train_and_extract(
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/src/training/llama_finetune.py", line 162, in train_and_extract
+    model = SurvivalLlamaModel(model_name=model_name).to(device)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/src/training/llama_finetune.py", line 58, in __init__
+    self.base_model = AutoModel.from_pretrained(
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 394, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4245, in from_pretrained
+    loading_info, disk_offload_index = cls._load_pretrained_model(model, state_dict, checkpoint_files, load_config)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4371, in _load_pretrained_model
+    merged_state_dict.update(load_state_dict(ckpt_file, disable_mmap=load_config.disable_mmap))
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 374, in load_state_dict
+    check_torch_load_is_safe()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/utils/import_utils.py", line 1357, in check_torch_load_is_safe
+    raise ValueError(
+ValueError: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434

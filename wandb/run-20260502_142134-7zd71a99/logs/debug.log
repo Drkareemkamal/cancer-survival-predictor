@@ -1,0 +1,1457 @@
+2026-05-02 14:21:34,364 INFO    MainThread:24668 [wandb_setup.py:_flush():81] Current SDK version is 0.26.1
+2026-05-02 14:21:34,364 INFO    MainThread:24668 [wandb_setup.py:_flush():81] Configure stats pid to 24668
+2026-05-02 14:21:34,364 INFO    MainThread:24668 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-05-02 14:21:34,364 INFO    MainThread:24668 [wandb_init.py:setup_run_log_directory():723] Logging user logs to /home/drkareemkamal/Documents/cancer-survival-analysis/wandb/run-20260502_142134-7zd71a99/logs/debug.log
+2026-05-02 14:21:34,364 INFO    MainThread:24668 [wandb_init.py:setup_run_log_directory():724] Logging internal logs to /home/drkareemkamal/Documents/cancer-survival-analysis/wandb/run-20260502_142134-7zd71a99/logs/debug-internal.log
+2026-05-02 14:21:34,364 INFO    MainThread:24668 [wandb_init.py:init():850] calling init triggers
+2026-05-02 14:21:34,364 INFO    MainThread:24668 [wandb_init.py:init():855] wandb.init called with sweep_config: {}
+config: {'epochs': 3, 'batch_size': 8, 'learning_rate': 0.0001, 'model_name': 'emilyalsentzer/Bio_ClinicalBERT', '_wandb': {}}
+2026-05-02 14:21:34,365 INFO    MainThread:24668 [wandb_init.py:init():898] starting backend
+2026-05-02 14:21:34,709 INFO    MainThread:24668 [wandb_init.py:init():913] sending inform_init request
+2026-05-02 14:21:35,198 INFO    MainThread:24668 [wandb_init.py:init():918] backend started and connected
+2026-05-02 14:21:35,200 INFO    MainThread:24668 [wandb_init.py:init():988] updated telemetry
+2026-05-02 14:21:35,203 INFO    MainThread:24668 [wandb_init.py:init():1011] communicating run to backend with 90.0 second timeout
+2026-05-02 14:21:35,682 INFO    MainThread:24668 [wandb_init.py:init():1056] starting run threads in backend
+2026-05-02 14:21:35,872 INFO    MainThread:24668 [wandb_run.py:_console_start():2554] atexit reg
+2026-05-02 14:21:35,872 INFO    MainThread:24668 [wandb_run.py:_redirect():2403] redirect: wrap_raw
+2026-05-02 14:21:35,872 INFO    MainThread:24668 [wandb_run.py:_redirect():2472] Wrapping output streams.
+2026-05-02 14:21:35,872 INFO    MainThread:24668 [wandb_run.py:_redirect():2495] Redirects installed.
+2026-05-02 14:21:35,885 INFO    MainThread:24668 [wandb_init.py:init():1094] run started, returning control to user process
+2026-05-02 14:22:33,581 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,587 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,587 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,587 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,588 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,588 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,588 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,589 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,589 ERROR   wandb-AsyncioManager-main:24668 [service_client.py:_forward_responses():131] Error reading server response.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 127, in _forward_responses
+    while response := await self._read_server_response():
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 141, in _read_server_response
+    header = await self._reader.readexactly(_HEADER_BYTE_INT_LEN)
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 708, in readexactly
+    await self._wait_for_data('readexactly')
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 501, in _wait_for_data
+    await self._waiter
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/selector_events.py", line 924, in write
+    n = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2026-05-02 14:22:33,590 INFO    wandb-AsyncioManager-main:24668 [mailbox.py:close():155] Closing mailbox, abandoning 1 handles.
+2026-05-02 14:22:33,591 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,591 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,591 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,592 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,592 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,592 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,593 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,593 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,593 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,593 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,594 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,594 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,594 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,595 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,595 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,595 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,595 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,596 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,596 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,596 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,596 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,597 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,597 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,597 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,597 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,598 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,598 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,598 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,599 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,599 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,599 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,599 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,600 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,600 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,600 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,601 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,601 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,601 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,601 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,602 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,602 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,602 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,603 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,603 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,603 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,603 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,604 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,604 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,604 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,604 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,605 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,605 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,605 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,606 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,608 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,609 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,610 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,611 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,612 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,615 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,615 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,616 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,617 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,618 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,619 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,620 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,621 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,625 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,625 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,626 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,627 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,628 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,630 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,631 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,632 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost
+2026-05-02 14:22:33,633 ERROR   wandb-AsyncioManager-main:24668 [asyncio_manager.py:fn_wrap_exceptions():184] Uncaught exception in run_soon callback.
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/asyncio_manager.py", line 182, in fn_wrap_exceptions
+    await fn()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 45, in publish
+    await self._send_server_request(request)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 78, in _send_server_request
+    raise self._broken_exc.with_traceback(self._broken_tb)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 87, in _send_server_request
+    await self._drain_writer()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/wandb/sdk/lib/service/service_client.py", line 96, in _drain_writer
+    await self._writer.drain()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 371, in drain
+    await self._protocol._drain_helper()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/asyncio/streams.py", line 167, in _drain_helper
+    raise ConnectionResetError('Connection lost')
+ConnectionResetError: Connection lost

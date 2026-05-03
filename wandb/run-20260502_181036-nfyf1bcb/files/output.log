@@ -1,0 +1,53 @@
+Loading data from data/processed/merged_tcga_data_final.csv...
+Dataset split: 16670 train / 2941 validation samples
+Initializing Quantized Llama-3 Model...
+Exception in thread Thread-auto_conversion:
+Traceback (most recent call last):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+Loading weights:   0%|                                  | 0/290 [00:00<?, ?it/s]    response.raise_for_status()
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://huggingface.co/api/models/aaditya/Llama3-OpenBioLLM-8B/discussions?p=0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/home/drkareemkamal/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/safetensors_conversion.py", line 117, in auto_conversion
+    raise e
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/safetensors_conversion.py", line 96, in auto_conversion
+    sha = get_conversion_pr_reference(api, pretrained_model_name_or_path, **cached_file_kwargs)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/safetensors_conversion.py", line 69, in get_conversion_pr_reference
+    pr = previous_pr(api, model_id, pr_title, token=token)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/transformers/safetensors_conversion.py", line 14, in previous_pr
+    for discussion in get_repo_discussions(repo_id=model_id, token=token):
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 6954, in get_repo_discussions
+    discussions, has_next = _fetch_discussion_page(page_index=page_index)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 6943, in _fetch_discussion_page
+    hf_raise_for_status(resp)
+  File "/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 849, in hf_raise_for_status
+    raise _format(HfHubHTTPError, message, response) from e
+huggingface_hub.errors.HfHubHTTPError: (Request ID: Root=1-69f613f5-358232c52683330036d41cd9;43c8e918-4dc5-4b42-8ea5-bfc9e3de58d2)
+
+403 Forbidden: Discussions are disabled for this repo.
+Cannot access content at: https://huggingface.co/api/models/aaditya/Llama3-OpenBioLLM-8B/discussions?p=0.
+Make sure your token has the correct permissions.
+Loading weights: 100%|████████████████████████| 290/290 [00:30<00:00,  9.53it/s]
+[transformers] [1mLlamaModel LOAD REPORT[0m from: aaditya/Llama3-OpenBioLLM-8B
+Key            | Status     |  |
+---------------+------------+--+-
+lm_head.weight | [38;5;208mUNEXPECTED[0m |  |
+
+Notes:
+- [38;5;208mUNEXPECTED:[0m	[3mcan be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+Starting training (max 20 epochs, patience=3)...
+Epoch 1/20 [Train]:   0%|                              | 0/4168 [00:00<?, ?it/s]/home/drkareemkamal/Documents/cancer-survival-analysis/.venv/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+Epoch 1/20 [Train]: 100%|████| 4168/4168 [3:04:05<00:00,  2.65s/it, loss=0.0000]
+Epoch 2/20 [Train]:  45%|▉ | 1856/4168 [1:20:58<1:42:14,  2.65s/it, loss=0.0000]
+Epoch 1: train_loss=0.5300  val_loss=0.3663
+  >>> New best model saved (val_loss=0.3663)

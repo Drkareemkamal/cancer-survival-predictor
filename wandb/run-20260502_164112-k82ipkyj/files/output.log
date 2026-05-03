@@ -1,0 +1,10 @@
+Loading data from data/processed/merged_tcga_data_final.csv...
+config.json: 100%|█████████████████████████████| 654/654 [00:00<00:00, 1.35MB/s]
+tokenizer_config.json: 50.6kB [00:00, 24.7MB/s]
+tokenizer.json: 9.09MB [00:01, 8.07MB/s]
+special_tokens_map.json: 100%|███████████████| 73.0/73.0 [00:00<00:00, 78.3kB/s]
+Dataset split: 16670 train / 2941 validation samples
+Initializing Quantized Llama-3 Model...
+model.safetensors.index.json: 23.9kB [00:00, 16.4MB/s]
+Downloading (incomplete total...):   7%| | 1.18G/16.1G [05:40<1:46:14, 2.33MB/s]
+Fetching 4 files:   0%|                                   | 0/4 [00:00<?, ?it/s]

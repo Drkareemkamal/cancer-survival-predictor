@@ -1,0 +1,19 @@
+Loading data from data/processed/merged_tcga_data_final.csv...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights: 100%|█████████████████████| 199/199 [00:00<00:00, 14038.86it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: emilyalsentzer/Bio_ClinicalBERT
+Key                                        | Status     |  |
+-------------------------------------------+------------+--+-
+cls.seq_relationship.bias                  | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.transform.dense.bias       | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.transform.LayerNorm.bias   | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.transform.LayerNorm.weight | [38;5;208mUNEXPECTED[0m |  |
+cls.seq_relationship.weight                | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.bias                       | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.transform.dense.weight     | [38;5;208mUNEXPECTED[0m |  |
+cls.predictions.decoder.weight             | [38;5;208mUNEXPECTED[0m |  |
+
+Notes:
+- [38;5;208mUNEXPECTED:[0m	[3mcan be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+Starting training...
+Epoch 1/3:  11%|█▊              | 279/2452 [00:48<06:34,  5.51it/s, loss=2.0568]

@@ -1,0 +1,25 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+env
+.env
+.env.*
+init/
+
+hfDeployment
+
+# Huge raw data files
+data/processed/
+data/raw/
+
+data/raw/mutation_gene.zip
+data/raw/RNAseq_data.zip
+data/raw/tcga_pdf.txt
+data/raw/TCGA.pdf
