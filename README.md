@@ -85,47 +85,7 @@ We use the **Cox Proportional Hazards (Cox PH)** loss function — the gold stan
 ### Model Pipeline
 
 ```
-┌──────────────────────────────────────────────────────────┐
-│                  Raw Pathological Text                    │
-│  "Invasive ductal carcinoma, Nottingham grade 3/3,       │
-│   ER negative, PR negative, HER2 positive (3+)..."       │
-└──────────────────────┬───────────────────────────────────┘
-                       │
-                       ▼
-┌──────────────────────────────────────────────────────────┐
-│              Tokenization (512 tokens max)                │
-│  [CLS] invasive ductal carcinoma , nottingham ...  [SEP] │
-└──────────────────────┬───────────────────────────────────┘
-                       │
-                       ▼
-┌──────────────────────────────────────────────────────────┐
-│         Pre-trained Language Model (Frozen + LoRA)        │
-│                                                          │
-│  ┌──────────────────────────────────────────────────┐    │
-│  │  Bio_ClinicalBERT (110M) or OpenBioLLM-8B (4-bit)│    │
-│  │  + LoRA Adapters (r=8/16, α=32)                  │    │
-│  └──────────────────────┬───────────────────────────┘    │
-│                         │                                │
-│                         ▼                                │
-│              [CLS] Token Embedding                       │
-│              (768-dim or 4096-dim)                        │
-└──────────────────────┬───────────────────────────────────┘
-                       │
-                       ▼
-┌──────────────────────────────────────────────────────────┐
-│                  Risk Head (Linear Layer)                 │
-│                 768/4096 → 1 (risk score)                 │
-└──────────────────────┬───────────────────────────────────┘
-                       │
-              ┌────────┴────────┐
-              │                 │
-              ▼                 ▼
-       Risk Score          Embeddings
-     (float, 1-dim)    (768/4096-dim vector)
-              │                 │
-              ▼                 ▼
-     Cox PH Survival     Downstream Tasks
-       Loss Training     (clustering, multi-modal)
+![My Image](./pipeline.png)
 ```
 
 ### LoRA (Low-Rank Adaptation)
