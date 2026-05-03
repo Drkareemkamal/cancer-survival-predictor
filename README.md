@@ -98,17 +98,17 @@ Instead of fine-tuning all model parameters (expensive, prone to catastrophic fo
 
 ---
 
-## 📊 Fine-Tuning Strategies
+## Fine-Tuning Approaches
 
-We implement and compare **3 strategies × 2 models = 6 configurations**:
+We implement and compare **3 Approaches × 2 models = 6 configurations**:
 
-### Strategy 1: Baseline (Pan-Cancer)
+### Approach 1: Baseline (Pan-Cancer)
 
 **Files:** `text_finetune.py`, `llama_finetune.py`
 
 Trains a single model on all 19,611 samples across all cancer types. The simplest approach — uses maximum data but doesn't distinguish between different pathological vocabularies.
 
-### Strategy 2: Cancer-Type Conditioning Token
+### Approach 2: Cancer-Type Conditioning Token (training ongoing)
 
 **Files:** `text_finetune_conditioned.py`, `llama_finetune_conditioned.py`
 
@@ -120,7 +120,7 @@ After:  "[DUCTAL AND LOBULAR NEOPLASMS] Invasive ductal carcinoma, Nottingham gr
 
 This teaches the model to produce **cancer-type-aware** embeddings and risk scores within a single model — no extra parameters, no separate training runs.
 
-### Strategy 3: Hierarchical Two-Stage
+### Approach 3: Hierarchical Two-Stage (training ongoing)
 
 **Files:** `text_finetune_hierarchical.py`, `llama_finetune_hierarchical.py`
 
