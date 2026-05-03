@@ -217,8 +217,8 @@ The most sophisticated approach: cancer types with enough data get specialized m
 
 ```bash
 # Clone the repository
-git clone https://github.com/drkareemkamal/cancer-survival-analysis.git
-cd cancer-survival-analysis
+git clone https://github.com/drkareemkamal/cancer-survival-predictor.git
+cd cancer-survival-predictor
 
 # Create virtual environment with uv
 uv venv
@@ -304,7 +304,7 @@ After running `evaluate_all_models.py`, find results in `data/processed/evaluati
 
 ---
 
-## 🌐 Deployment Guide
+## 🌐 Deployment 
 
 ### Option 1: HuggingFace Inference API (Easiest)
 
@@ -325,109 +325,10 @@ outputs = model(**inputs)
 embedding = outputs.last_hidden_state[:, 0, :]  # CLS embedding
 ```
 
-### Option 2: Gradio Web Interface (Recommended for Demos)
+### Option 2: Gradio Web Interface
 
-```python
-# deploy_gradio.py
-import gradio as gr
-import torch
-from transformers import AutoTokenizer, AutoModel
+you can visit [https://huggingface.co/spaces/drkareemkamal/CancerSurvivalPredictor]
 
-tokenizer = AutoTokenizer.from_pretrained("emilyalsentzer/Bio_ClinicalBERT")
-
-class SurvivalPredictor:
-    def __init__(self, checkpoint_path):
-        self.model = AutoModel.from_pretrained("emilyalsentzer/Bio_ClinicalBERT")
-        # Load your fine-tuned weights
-        state = torch.load(checkpoint_path, map_location='cpu')
-        self.model.load_state_dict(state, strict=False)
-        self.risk_head = torch.nn.Linear(768, 1)
-        self.model.eval()
-    
-    def predict(self, text):
-        inputs = tokenizer(text, return_tensors="pt", max_length=512,
-                          truncation=True, padding=True)
-        with torch.no_grad():
-            outputs = self.model(**inputs)
-            cls = outputs.last_hidden_state[:, 0, :]
-            risk = self.risk_head(cls).item()
-        
-        risk_level = "HIGH" if risk > 0 else "LOW"
-        return f"Risk Score: {risk:.4f}\nRisk Level: {risk_level}"
-
-predictor = SurvivalPredictor("data/processed/clinicalbert_best_model.pt")
-
-demo = gr.Interface(
-    fn=predictor.predict,
-    inputs=gr.Textbox(label="Pathological Report Text", lines=10),
-    outputs=gr.Textbox(label="Survival Risk Prediction"),
-    title="🧬 Cancer Survival Risk Predictor",
-    description="Enter a pathological text report to predict patient survival risk."
-)
-demo.launch()
-```
-
-### Option 3: FastAPI REST Service (Production)
-
-```python
-# deploy_api.py
-from fastapi import FastAPI
-from pydantic import BaseModel
-import torch
-from transformers import AutoTokenizer, AutoModel
-
-app = FastAPI(title="Cancer Survival Risk API")
-
-class PredictionRequest(BaseModel):
-    pathological_text: str
-    cancer_type: str = None  # Optional: for conditioned model
-
-class PredictionResponse(BaseModel):
-    risk_score: float
-    risk_level: str
-    model_used: str
-
-@app.post("/predict", response_model=PredictionResponse)
-async def predict(request: PredictionRequest):
-    # Add [CANCER_TYPE] tag if using conditioned model
-    text = request.pathological_text
-    if request.cancer_type:
-        text = f"[{request.cancer_type.upper()}] {text}"
-    
-    inputs = tokenizer(text, return_tensors="pt", max_length=512,
-                      truncation=True, padding=True)
-    with torch.no_grad():
-        outputs = model(**inputs)
-        cls = outputs.last_hidden_state[:, 0, :]
-        risk = risk_head(cls).item()
-    
-    return PredictionResponse(
-        risk_score=risk,
-        risk_level="HIGH" if risk > 0 else "LOW",
-        model_used="ClinicalBERT-Conditioned"
-    )
-```
-
-```bash
-# Run the API
-uvicorn deploy_api:app --host 0.0.0.0 --port 8000
-```
-
-### Option 4: Docker Container (Enterprise)
-
-```dockerfile
-FROM python:3.10-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY src/ src/
-COPY data/processed/clinicalbert_best_model.pt model.pt
-COPY deploy_api.py .
-EXPOSE 8000
-CMD ["uvicorn", "deploy_api:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
----
 
 ## 🎯 Clinical Applications
 
