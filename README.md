@@ -84,9 +84,9 @@ We use the **Cox Proportional Hazards (Cox PH)** loss function — the gold stan
 
 ### Model Pipeline
 
-```
+
 ![My Image](./pipeline.png)
-```
+
 
 ### LoRA (Low-Rank Adaptation)
 
