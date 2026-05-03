@@ -109,7 +109,7 @@ threadpoolctl==3.6.0
 triton==3.1.0
 PyYAML==6.0.3
 cycler==0.12.1
-torch==2.5.1+cu124
+torch==2.8.0
 hf-xet==1.4.3
 nvidia-cuda-cupti-cu12==12.4.127
 pydantic==2.13.3
