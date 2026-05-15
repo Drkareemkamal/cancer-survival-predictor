@@ -42,7 +42,7 @@ Bootstrap 95 % CIs over 500 resamples. Full generated report at [`figures/evalua
 
 ![C-index comparison](figures/cindex_comparison.png)
 
-**How to read this plot:** the C-index measures how well a model ranks patients by survival risk. A value of 0.50 is random ordering, while higher values mean the model more often assigns higher risk to patients who die earlier. The blue bars show validation performance and the red bars show held-out test performance. Cox PH is the weakest test performer, RSF improves substantially, and the neural multimodal models give the strongest ranking signal, with the Transformer highest on the current test run.
+the C-index measures how well a model ranks patients by survival risk. A value of 0.50 is random ordering, while higher values mean the model more often assigns higher risk to patients who die earlier. The blue bars show validation performance and the red bars show held-out test performance. Cox PH is the weakest test performer, RSF improves substantially, and the neural multimodal models give the strongest ranking signal, with the Transformer highest on the current test run.
 
 ### Pathology multi-task evaluation vs Saluja et al. (Nature, 2025)
 
@@ -64,7 +64,7 @@ Full CSV at [`figures/results_pathology_tasks.csv`](figures/results_pathology_ta
 
 ![Pathology task summary](figures/pathology_tasks.png)
 
-**How to read this plot:** the left panel compares accuracy and macro F1 for each extracted pathology field. Accuracy tells how often the model is correct overall; macro F1 is stricter for imbalanced classes because every class contributes equally. Tasks such as `cancer_type`, `primary_site`, `n_stage`, and `prior_malignancy` have strong accuracy, while lower macro F1 on fields such as `histology`, `prior_malignancy`, and `prognosis_good` shows that rare labels remain harder. The right panel compares the three Saluja-overlap tasks: PathQwen2.5 is close on cancer-type classification but still trails on AJCC stage and prognosis reasoning.
+the left panel compares accuracy and macro F1 for each extracted pathology field. Accuracy tells how often the model is correct overall; macro F1 is stricter for imbalanced classes because every class contributes equally. Tasks such as `cancer_type`, `primary_site`, `n_stage`, and `prior_malignancy` have strong accuracy, while lower macro F1 on fields such as `histology`, `prior_malignancy`, and `prognosis_good` shows that rare labels remain harder. The right panel compares the three Saluja-overlap tasks: PathQwen2.5 is close on cancer-type classification but still trails on AJCC stage and prognosis reasoning.
 
 ---
 
