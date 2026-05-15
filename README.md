@@ -64,7 +64,7 @@ Full CSV at [`figures/results_pathology_tasks.csv`](figures/results_pathology_ta
 
 ## 🏗️ End-to-end pipeline
 
-(./Pipeline.jpeg)
+![entire Pipeline](./Pipeline.jpeg)
 
 ```
 ┌──────────────────────────── RAW DATA ────────────────────────────┐
