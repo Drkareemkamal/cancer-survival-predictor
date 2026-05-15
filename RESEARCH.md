@@ -1,7 +1,7 @@
 # TCGA Multimodal Cancer Survival Analysis — Full Pipeline Documentation
 
 **Author:** Dr. Kareem Kamal
-**Version:** 2026-05-11 (supersedes the original `RESEARCH.pdf`)
+**Version:** 2026-05-11 
 **Repository:** [cancer-survival-predictor](.)
 
 This document describes every step of the pipeline as actually built, from raw
