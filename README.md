@@ -21,7 +21,7 @@
 | AJCC stage accuracy | 0.85 | 0.50 (improvable to 0.78 with CoT v2 + outlines) |
 | Modalities | text only | **4** (clinical, RNA-Seq, mutation, pathology) |
 | Survival models | — | Cox PH, RSF, Autoencoder, Transformer, Ensemble |
-| Best test C-index (OS) | — | **0.80** (Transformer fusion, 95 % CI 0.78 – 0.82) |
+| Best test C-index (OS) | — | **0.805** (Transformer fusion, 95 % CI 0.784 – 0.827) |
 | Patients | 9,523 reports | 8,459 patients × 4 modalities |
 
 ---
@@ -32,15 +32,17 @@
 
 | Model | Val C | **Test C** | 95 % CI | Mean Time-AUC | KM log-rank p |
 |---|---|---|---|---|---|
-| Cox PH | 0.756 | 0.566 | [0.527, 0.600] | 0.762 | 1.4 × 10⁻⁴⁷ |
-| Random Survival Forest | 0.785 | 0.741 | [0.718, 0.766] | 0.802 | 1.8 × 10⁻⁵⁷ |
-| **MissingAware Autoencoder** | 0.808 | **0.792** | [0.769, 0.814] | 0.824 | 3.5 × 10⁻⁶⁷ |
-| **Robust Transformer Fusion** | **0.817** | **0.801** | [0.780, 0.823] | 0.819 | 8.9 × 10⁻⁶¹ |
-| **Adaptive Ensemble** | 0.815 | **0.798** | [0.777, 0.820] | 0.820 | 2.8 × 10⁻⁶⁶ |
+| Cox PH | 0.756 | 0.601 | [0.565, 0.634] | 0.614 | 1.94 × 10⁻⁷ |
+| Random Survival Forest | 0.785 | 0.741 | [0.718, 0.765] | 0.773 | 2.48 × 10⁻⁴⁰ |
+| **MissingAware Autoencoder** | 0.807 | **0.788** | [0.764, 0.810] | 0.816 | 1.47 × 10⁻⁶⁸ |
+| **Robust Transformer Fusion** | **0.817** | **0.805** | [0.784, 0.827] | 0.838 | 1.86 × 10⁻⁷¹ |
+| **Adaptive Ensemble** | 0.815 | **0.795** | [0.774, 0.818] | 0.825 | 3.76 × 10⁻⁶⁷ |
 
-Bootstrap 95 % CIs over 500 resamples. Full CSV at [`figures/results_survival_models.csv`](figures/results_survival_models.csv).
+Bootstrap 95 % CIs over 500 resamples. Full generated report at [`figures/evaluation_report.md`](figures/evaluation_report.md), with machine-readable values in [`figures/evaluation_summary.json`](figures/evaluation_summary.json).
 
 ![C-index comparison](figures/cindex_comparison.png)
+
+**How to read this plot:** the C-index measures how well a model ranks patients by survival risk. A value of 0.50 is random ordering, while higher values mean the model more often assigns higher risk to patients who die earlier. The blue bars show validation performance and the red bars show held-out test performance. Cox PH is the weakest test performer, RSF improves substantially, and the neural multimodal models give the strongest ranking signal, with the Transformer highest on the current test run.
 
 ### Pathology multi-task evaluation vs Saluja et al. (Nature, 2025)
 
@@ -59,6 +61,10 @@ Bootstrap 95 % CIs over 500 resamples. Full CSV at [`figures/results_survival_mo
 > **Summary**: PathQwen2.5 matches Saluja 2025 within ~4 points on cancer-type identification while extending the task suite from 3 → 9 fields. Five novel tasks (primary site, T/N/M stage, histology, prior malignancy) achieve **0.63–0.89 accuracy** at first attempt. The two harder reasoning tasks (AJCC stage 0.50, prognosis 0.43) are below the paper's 8-shot+CoT numbers — see [Section 6.1](#-improving-the-hard-tasks) for documented improvement paths.
 
 Full CSV at [`figures/results_pathology_tasks.csv`](figures/results_pathology_tasks.csv).
+
+![Pathology task summary](figures/pathology_tasks.png)
+
+**How to read this plot:** the left panel compares accuracy and macro F1 for each extracted pathology field. Accuracy tells how often the model is correct overall; macro F1 is stricter for imbalanced classes because every class contributes equally. Tasks such as `cancer_type`, `primary_site`, `n_stage`, and `prior_malignancy` have strong accuracy, while lower macro F1 on fields such as `histology`, `prior_malignancy`, and `prognosis_good` shows that rare labels remain harder. The right panel compares the three Saluja-overlap tasks: PathQwen2.5 is close on cancer-type classification but still trails on AJCC stage and prognosis reasoning.
 
 ---
 
@@ -324,23 +330,7 @@ Wall time: **~9.7 hours** on RTX 3090.
 
 ![Pathology tasks](figures/pathology_tasks.png)
 
-### Head-to-head with Saluja 2025
-
-![PathQwen2.5 vs Saluja](figures/pathology_vs_saluja.png)
-
-### Confusion matrices (top tasks)
-
-| Cancer type (32 classes) | AJCC stage |
-|---|---|
-| ![](figures/pathology_confusion_cancer_type.png) | ![](figures/pathology_confusion_ajcc_stage.png) |
-
-| T-stage | N-stage | M-stage |
-|---|---|---|
-| ![](figures/pathology_confusion_t_stage.png) | ![](figures/pathology_confusion_n_stage.png) | ![](figures/pathology_confusion_m_stage.png) |
-
-| Primary site | Histology | Prior malignancy | Prognosis |
-|---|---|---|---|
-| ![](figures/pathology_confusion_primary_site.png) | ![](figures/pathology_confusion_histology.png) | ![](figures/pathology_confusion_prior_malignancy.png) | ![](figures/pathology_confusion_prognosis_good.png) |
+The saved `pathology_tasks.png` and duplicate `pathology_tasks2.png` summarize both the per-task bars and the Saluja head-to-head comparison. The dashed 0.50 guide marks the rough threshold above chance for many balanced tasks; bars far to the right indicate reliable extraction, while large accuracy/F1 gaps usually mean the model handles common labels better than rare ones.
 
 ### Joint-extraction vs per-task-extraction tradeoff
 
@@ -445,25 +435,31 @@ Adaptive Ensemble
 |---|---|
 | ![](figures/km_by_risk_Cox_PH.png) | ![](figures/km_by_risk_RSF.png) |
 
+The Kaplan-Meier curves split the 1,266 test patients into low-, medium-, and high-risk tertiles according to each model. The y-axis is estimated survival probability and the x-axis is months from diagnosis; a curve that drops faster means that group has worse observed survival. The shaded bands are uncertainty intervals. Cox PH separates the groups only moderately, while RSF produces a clearer gradient between low, medium, and high risk.
+
 | Autoencoder | Transformer Fusion | Adaptive Ensemble |
 |---|---|---|
 | ![](figures/km_by_risk_Autoencoder.png) | ![](figures/km_by_risk_Transformer.png) | ![](figures/km_by_risk_Ensemble.png) |
 
-All log-rank tests reach p < 10⁻⁴⁷; deep models reach p < 10⁻⁶⁰ — risk groups separate dramatically.
+For the Autoencoder, Transformer, and Ensemble, the high-risk curve falls early and stays well below the medium- and low-risk groups, which means the learned multimodal risk scores correspond to real survival separation. The log-rank p-values test whether the three survival curves differ; the extremely small p-values show that the separation is unlikely to be random. The Transformer has the strongest KM separation in this run (χ² ≈ 325.7), followed closely by the Autoencoder and Ensemble.
 
 ### Time-dependent AUC
 
 ![Time-dependent AUC](figures/time_dependent_auc.png)
 
+**How to read this curve:** each point asks, "At this time horizon, can the model distinguish patients who have died by this time from those who have not?" Higher AUC is better, and 0.50 is random. The Transformer stays around 0.83-0.84 from 6 to 60 months, showing stable discrimination across early and late survival horizons. The Autoencoder and Ensemble are close behind, RSF is useful but lower, and Cox PH remains much weaker.
+
 ### Risk score distributions (event vs censored)
 
 ![Risk score distribution](figures/risk_score_distribution.png)
+
+**How to read this plot:** each panel compares the model's predicted risk scores for patients who died during follow-up (red) versus censored patients (blue). A good survival model should shift the red distribution to the right, meaning observed deaths receive higher predicted risk. The deep models show clearer red-right/blue-left separation than Cox PH, while overlap between the colors represents unavoidable ambiguity: patients with similar feature profiles can still have different observed follow-up outcomes.
 
 ### Modality ablation (Cox + RSF on subsets)
 
 ![Ablation table](figures/ablation_table.png)
 
-Full ablation CSV at [`figures/results_ablation.csv`](figures/results_ablation.csv).
+**How to read this plot:** ablation removes or adds modality groups to show which data sources carry useful survival signal. The x-axis is test C-index, so farther right is better. Clinical variables alone are already strong because age, stage, cancer type, and treatment-related covariates are highly prognostic. Adding pathology-structured features helps RSF most, while the full feature set is evaluated with RSF in this ablation because the high-dimensional expression and pathology-embedding block is not suitable for the simple Cox baseline without extra regularization.
 
 ### Interactive dashboards
 
@@ -471,9 +467,9 @@ Open these HTML files in your browser:
 
 | File | What it shows |
 |---|---|
-| [`figures/dashboard.html`](figures/dashboard.html) | 6-panel Plotly dashboard: bar chart, density, KM curves, time-AUC, risk-vs-time scatter, summary table |
-| [`figures/km_interactive.html`](figures/km_interactive.html) | KM curves with model toggle + hover |
-| [`figures/cindex_interactive.html`](figures/cindex_interactive.html) | Interactive C-index bar chart |
+| [`figures/dashboard.html`](figures/dashboard.html) | 6-panel Plotly dashboard combining the C-index bars, risk density curves, KM curves, time-AUC trends, risk-vs-time scatter, and summary table. Use it as the fastest visual audit of model behavior. |
+| [`figures/km_interactive.html`](figures/km_interactive.html) | Interactive Kaplan-Meier curves with model toggles and hover values, useful for checking exact survival probabilities at particular months. |
+| [`figures/cindex_interactive.html`](figures/cindex_interactive.html) | Interactive C-index bar chart for comparing validation/test ranking performance across models. |
 
 ---
 
