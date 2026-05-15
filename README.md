@@ -64,6 +64,8 @@ Full CSV at [`figures/results_pathology_tasks.csv`](figures/results_pathology_ta
 
 ## 🏗️ End-to-end pipeline
 
+(./Pipeline.jpeg)
+
 ```
 ┌──────────────────────────── RAW DATA ────────────────────────────┐
 │   cBioPortal     │   GDC RNA-Seq    │   GDC MAFs     │  Pathology │
@@ -138,6 +140,7 @@ Full CSV at [`figures/results_pathology_tasks.csv`](figures/results_pathology_ta
 │  Plotly interactive dashboard + Seaborn static figures           │
 └──────────────────────────────────────────────────────────────────┘
 ```
+
 
 Run the whole pipeline with **`python main.py --stage all`**.
 
