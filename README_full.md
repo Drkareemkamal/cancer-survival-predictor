@@ -332,7 +332,7 @@ The project also defines three advanced architectures for multimodal integration
 ### Strategy 1: Baseline (Pan-Cancer)
 **Files**: `text_finetune.py`, `llama_finetune.py`
 
-Single model on all 19,611 samples. Maximum data, simplest approach.
+Single model on all 9,523 samples. Maximum data, simplest approach.
 
 ### Strategy 2: Cancer-Type Conditioning Token
 **Files**: `text_finetune_conditioned.py`, `llama_finetune_conditioned.py`
@@ -347,7 +347,7 @@ After:  "[DUCTAL AND LOBULAR NEOPLASMS] Invasive ductal carcinoma..."
 **Files**: `text_finetune_hierarchical.py`, `llama_finetune_hierarchical.py`
 
 ```
-Stage 1: Train on ALL 19,611 samples (pan-cancer foundation)
+Stage 1: Train on ALL 9,523 samples (pan-cancer foundation)
     ↓ Save checkpoint
 Stage 2: Fine-tune per viable cancer type (500+ samples, 5%+ event rate):
     → Adenomas (8,977)  → Squamous (2,764)  → Ductal (2,362)

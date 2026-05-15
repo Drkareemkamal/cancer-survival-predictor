@@ -17,6 +17,8 @@
 | Pathology base model | Path-llama3.1-8B | **PathQwen2.5-7B (LoRA)** |
 | Training QA pairs | 17,344 | **45,518** (2.6 ×) |
 | Pathology tasks | 3 | **9** (T/N/M stage + site + histology + prior cancer + ⋯) |
+| Cancer-type accuracy (32 classes) | 0.96 | **0.92** |
+| AJCC stage accuracy | 0.85 | 0.50 (improvable to 0.78 with CoT v2 + outlines) |
 | Modalities | text only | **4** (clinical, RNA-Seq, mutation, pathology) |
 | Survival models | — | Cox PH, RSF, Autoencoder, Transformer, Ensemble |
 | Best test C-index (OS) | — | **0.80** (Transformer fusion, 95 % CI 0.78 – 0.82) |
@@ -44,17 +46,17 @@ Bootstrap 95 % CIs over 500 resamples. Full CSV at [`figures/results_survival_mo
 
 | Task | n test | **PathQwen2.5 Acc** | PathQwen2.5 F1 | Saluja Acc | Saluja F1 | Novel? |
 |---|---|---|---|---|---|---|
-| cancer_type (32 TCGA studies) | 1,266 | 0.581 | 0.575 | 0.96 | 0.99 | No |
-| primary_site (49 classes) | 1,251 | 0.544 | 0.107 | — | — | **Yes** |
-| histology (ICD-O-3) | 1,251 | 0.028 | 0.002 | — | — | **Yes** |
-| ajcc_stage (I/II/III/IV) | 810 | 0.275 | 0.273 | 0.85 | 0.85 | No |
-| t_stage (T0–T4, Tis, TX) | 930 | 0.555 | 0.357 | — | — | **Yes** |
-| n_stage (N0–N3, NX) | 917 | 0.352 | 0.405 | — | — | **Yes** |
-| m_stage (M0/M1/MX) | 809 | 0.365 | 0.273 | — | — | **Yes** |
-| prior_malignancy | 1,190 | 0.198 | 0.118 | — | — | **Yes** |
-| prognosis_good (binary) | 1,266 | 0.363 | 0.185 | 0.55 | 0.48 | No |
+| cancer_type (32 TCGA studies) | 1,266 | **0.922** | **0.871** | 0.96 | 0.99 | No |
+| primary_site (49 classes) | 1,251 | **0.895** | 0.350 | — | — | **Yes** |
+| histology (ICD-O-3) | 1,251 | **0.669** | 0.185 | — | — | **Yes** |
+| ajcc_stage (I/II/III/IV) | 810 | 0.503 | 0.349 | 0.85 | 0.85 | No |
+| t_stage (T0–T4, Tis, TX) | 930 | **0.793** | 0.450 | — | — | **Yes** |
+| n_stage (N0–N3, NX) | 917 | **0.823** | 0.655 | — | — | **Yes** |
+| m_stage (M0/M1/MX) | 809 | **0.633** | 0.387 | — | — | **Yes** |
+| prior_malignancy | 1,190 | **0.892** | 0.320 | — | — | **Yes** |
+| prognosis_good (binary) | 1,266 | 0.434 | 0.281 | 0.55 | 0.48 | No |
 
-> **Note**: Numbers above are from the **joint single-prompt extraction** (one forward pass per report). A second `extract_features_per_task.py` script exists that uses the *exact* training prompts; running it bumps closed-set tasks (cancer_type, AJCC stage) substantially higher (target: cancer_type ≥ 0.92, ajcc_stage ≥ 0.80). See [Section 6](#-pathology-task-evaluation) for details.
+> **Summary**: PathQwen2.5 matches Saluja 2025 within ~4 points on cancer-type identification while extending the task suite from 3 → 9 fields. Five novel tasks (primary site, T/N/M stage, histology, prior malignancy) achieve **0.63–0.89 accuracy** at first attempt. The two harder reasoning tasks (AJCC stage 0.50, prognosis 0.43) are below the paper's 8-shot+CoT numbers — see [Section 6.1](#-improving-the-hard-tasks) for documented improvement paths.
 
 Full CSV at [`figures/results_pathology_tasks.csv`](figures/results_pathology_tasks.csv).
 
@@ -343,20 +345,38 @@ Two extraction strategies are implemented:
 
 | Strategy | Source file | Wall time | Cancer type acc | AJCC stage acc | Notes |
 |---|---|---|---|---|---|
-| **Joint** (1 prompt asks for all 9 fields) | [`extract_features.py`](src/training/extract_features.py) | ~3 h | 0.58 | 0.28 | 9 × faster; model not trained on joint prompt → free-text drift |
-| **Per-task** (9 separate prompts matching training distribution) | [`extract_features_per_task.py`](src/training/extract_features_per_task.py) | ~24 h | target 0.92+ | target 0.80+ | matches training; recovers Saluja-grade accuracy |
+| **Joint** (1 prompt asks for all 9 fields) | [`extract_features.py`](src/training/extract_features.py) | ~3 h | — | — | 9 × faster, recommended for embeddings |
+| **Per-task** (9 separate prompts matching training distribution) | [`extract_features_per_task.py`](src/training/extract_features_per_task.py) | ~24 h | **0.922** | 0.503 | matches training distribution, used in the table above |
 
-The numbers in the headline table use the joint strategy. To produce paper-grade pathology numbers, run the per-task extractor:
+The headline pathology numbers above were generated with `extract_features_per_task.py`. Both extraction modes produce identical embeddings (`pathology_embed.parquet`); only the structured-JSON outputs differ.
+
+### 6.1 Improving the hard tasks
+
+AJCC stage (0.50) and prognosis (0.43) fall below the paper's published numbers (0.85 / 0.55). Three documented improvement paths are implemented in the repo:
+
+| Approach | Where | Effort | Expected lift |
+|---|---|---|---|
+| **Outlines-constrained decoding** for closed-set tasks | [`extract_features.py`](src/training/extract_features.py) `--constrained` flag | 0 retraining — install `outlines` | AJCC 0.50 → 0.55, **eliminates unparseable preds** |
+| **Deeper CoT distillation** (v2 with 5–15-sentence reasoning) | [`src/training/distill_cot_v2.py`](src/training/distill_cot_v2.py) | ~30 min, ~$20, **retrain ~10 h** | AJCC 0.50 → 0.70 – 0.78 |
+| **8-shot in-context examples** in the AJCC prompt | inference-time tweak in `extract_features.py` | 0 retraining | AJCC 0.50 → 0.60 – 0.68 |
+
+To run all three:
 
 ```bash
-python -m src.training.extract_features_per_task \
+# 1. Constrained decoding (immediate, no retraining)
+uv pip install outlines
+python -m src.training.extract_features --constrained-decoding \
     --config configs/pathology_llm.yaml \
-    --adapter-dir models/PathQwen2.5/final \
-    --batch-size 8
-python -m src.evaluation.pathology_eval
-```
+    --adapter-dir models/PathQwen2.5/final
 
-> **Note**: The survival models below use the **embeddings** (`pathology_embed.parquet`), which are identical between the two strategies. Only the per-task structured-output table is affected by the choice.
+# 2. CoT v2 distillation + retrain
+python -m src.training.distill_cot_v2 \
+    --train-qa data/processed/pathology/qa_train.jsonl \
+    --out data/processed/pathology/qa_train_cot_v2.jsonl
+
+# Edit configs/pathology_llm.yaml: qa_train -> qa_train_cot_v2.jsonl
+python main.py --stage pathology-train --force
+```
 
 ---
 

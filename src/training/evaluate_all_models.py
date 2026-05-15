@@ -26,7 +26,7 @@ warnings.filterwarnings('ignore')
 # =====================================================================
 DATA_DIR = 'data/processed'
 OUTPUT_DIR = 'data/processed/evaluation'
-DATA_PATH = 'data/processed/merged_tcga_data_final.csv'
+DATA_PATH = 'data/processed/merged_tcga_data_text_dedup.csv'
 
 # Map: strategy_name -> (embedding_csv, risk_score_col, emb_prefix)
 MODELS = {

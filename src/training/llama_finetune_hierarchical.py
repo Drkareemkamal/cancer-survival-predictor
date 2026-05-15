@@ -440,7 +440,7 @@ def run_hierarchical(data_path, output_dir,
 if __name__ == "__main__":
     load_dotenv(override=True)
     run_hierarchical(
-        data_path='data/processed/merged_tcga_data_final.csv',
+        data_path='data/processed/merged_tcga_data_text_dedup.csv',
         output_dir='data/processed',
         stage1_epochs=20, stage2_epochs=10,
         batch_size=4, lr=2e-5, stage2_lr=1e-5,

@@ -12,7 +12,7 @@ from torch.utils.data import DataLoader
 
 def run_sanity_check():
     print("Running sanity check for pathology text fine-tuning...")
-    data_path = 'data/processed/merged_tcga_data_final.csv'
+    data_path = 'data/processed/merged_tcga_data_text_dedup.csv'
     
     if not os.path.exists(data_path):
         print(f"Error: {data_path} not found.")

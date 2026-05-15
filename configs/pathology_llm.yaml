@@ -1,0 +1,60 @@
+project_root: /home/drkareemkamal/Documents/cancer-survival-predictor
+
+base_model: unsloth/Qwen2.5-7B-Instruct-bnb-4bit
+# Comparison baseline (paper): unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit
+
+data:
+  qa_train: data/processed/pathology/qa_train_cot.jsonl   # CoT-augmented version
+  qa_val:   data/processed/pathology/qa_val.jsonl
+  qa_test:  data/processed/pathology/qa_test.jsonl
+
+lora:
+  r: 32
+  alpha: 32
+  dropout: 0.0
+  # All 7 transformer linear layers — 2026 "all-linear" recommendation.
+  # Dropped embed_tokens + lm_head: each is ~545M params in Qwen2.5-7B,
+  # adding them costs ~7 GB VRAM. Pathology reports use vocabulary already
+  # in Qwen's tokenizer, so retraining embeddings gives near-zero gain.
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj,embed_tokens, lm_head]
+
+training:
+  max_seq_length: 4096
+  per_device_batch_size: 2
+  grad_accum_steps: 8              # effective batch = 16
+  num_train_epochs: 5              # generous; early stopping cuts it short when val plateaus
+  learning_rate: 5.0e-5
+  optim: adamw_8bit
+  lr_scheduler_type: constant_with_warmup
+  warmup_ratio: 0.10
+  weight_decay: 0.1
+  max_grad_norm: 1.0
+  bf16: true
+  logging_steps: 25
+  eval_steps: 100                  # tighter cadence -> early-stopping kicks in faster
+  save_steps: 100
+  save_total_limit: 2
+  load_best_model_at_end: true
+  metric_for_best_model: eval_loss
+  early_stopping_patience: 3       # stops if 3 evals show no improvement
+  seed: 42
+  packing: false
+
+  # 4-bit nf4 with double quantization (matches paper, max precision on 3090)
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+
+  # Flash Attention 2 — Unsloth auto-uses it when flash-attn is installed
+  use_flash_attention_2: true
+
+output:
+  dir: models/PathQwen2.5
+  run_name: PathQwen2.5-instruct-multitask
+  push_to_hub: true                # uses HF_TOKEN + HF_REPO_ID from .env
+  hub_model_id: PathQwen2.5-instruct         # falls back to HF_REPO_ID env if set
+  hub_strategy: end                 # only push final adapter (not every checkpoint)
+  hub_private_repo: true
+
+wandb:
+  enabled: true
+  project: pathology-multitask

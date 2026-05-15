@@ -1,0 +1,10 @@
+Task,N_test,PathQwen25_acc,PathQwen25_F1,Saluja2025_acc,Saluja2025_F1,Novel_task
+cancer_type,1266,0.9218,0.8711,0.96,0.99,No
+primary_site,1251,0.8945,0.35,—,—,Yes
+histology,1251,0.6691,0.1848,—,—,Yes
+ajcc_stage,810,0.5025,0.3493,0.85,0.85,No
+t_stage,930,0.7925,0.4496,—,—,Yes
+n_stage,917,0.8233,0.6552,—,—,Yes
+m_stage,809,0.6329,0.3872,—,—,Yes
+prior_malignancy,1190,0.8916,0.32,—,—,Yes
+prognosis_good,1266,0.4344,0.2809,0.55,0.48,No

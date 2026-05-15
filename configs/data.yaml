@@ -1,0 +1,28 @@
+project_root: /home/drkareemkamal/Documents/cancer-survival-predictor
+
+paths:
+  raw_clinical: data/raw/all_clinical_data_all_cbio_studies.csv
+  raw_rnaseq_dir: data/raw/RNAseq_data
+  raw_mutation_dir: data/raw/mutation_gene
+  raw_mutation_zip: data/raw/mutation_gene.zip
+  interim_pca: data/interim/pca_gene_expression_data2.csv
+  interim_maf_meta: data/interim/maf_paths_from_new_json2.csv
+  cohort_csv: data/processed/merged_tcga_data_text_dedup.csv
+  clinical_csv: data/processed/final_clinical_survival_dataset2.csv
+  features_dir: data/processed/features
+  splits_dir: data/processed/splits
+  pathology_dir: data/processed/pathology
+
+cohort:
+  patient_id_col: TCGA_Barcode
+  study_col: studyId
+  text_col: text
+  os_months_col: OS_MONTHS
+  os_status_col: OS_STATUS
+
+splits:
+  train_frac: 0.70
+  val_frac: 0.15
+  test_frac: 0.15
+  seed: 42
+  stratify_by: [studyId, event]

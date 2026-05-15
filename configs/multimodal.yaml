@@ -1,0 +1,35 @@
+project_root: /home/drkareemkamal/Documents/cancer-survival-predictor
+
+# Pipeline-wide multimodal training config.
+# Modalities use whichever feature parquets are present in data/processed/features/.
+
+modalities: [clinical, expression, mutation, pathology_struct, pathology_embed]
+# For ablations, override at the CLI: --modalities clinical,pathology_embed
+
+model:
+  type: autoencoder           # autoencoder | transformer | ensemble
+  latent_dim: 256
+  n_heads: 8
+  dropout: 0.1
+  # transformer-only:
+  d_model: 512
+  n_layers: 4
+  dim_ff: 2048
+
+training:
+  loss: focal                 # cox | focal | ranking
+  alpha: 0.3                  # focal
+  gamma: 2.0                  # focal
+  modality_dropout: 0.10      # randomly drop a modality with this prob during training
+  optimizer: adamw
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  batch_size: 64
+  max_epochs: 200
+  early_stopping_patience: 20
+  metric_for_best: val_cindex
+  grad_clip: 1.0
+  seed: 42
+
+output:
+  dir: models/multimodal

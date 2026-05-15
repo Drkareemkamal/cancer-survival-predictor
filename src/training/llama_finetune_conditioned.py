@@ -254,7 +254,7 @@ def train_and_extract(data_path, output_dir, max_epochs=20, batch_size=4, lr=2e-
 if __name__ == "__main__":
     load_dotenv(override=True)
     train_and_extract(
-        data_path='data/processed/merged_tcga_data_final.csv',
+        data_path='data/processed/merged_tcga_data_text_dedup.csv',
         output_dir='data/processed',
         max_epochs=20, patience=3, val_split=0.15,
         hf_token=os.environ.get("HF_TOKEN"),

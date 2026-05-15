@@ -1,0 +1,134 @@
+# Phase 1: Instruction-Tuning Setup
+# Hybrid Strategy for Cancer Survival Prediction
+
+## Data Generation
+data:
+  source_csv: "data/processed/merged_tcga_data_text_dedup.csv"
+  output_jsonl: "data/processed/instruction_tuning_data.jsonl"
+  n_samples: 8459
+  tasks_per_sample: 3
+  expected_qa_pairs: 25377
+
+## Model Configuration
+model:
+  # Option 1: Llama-3.1-8B (recommended for Phase 1)
+  model_id: "meta-llama/Llama-2-8b-hf"
+  # model_id: "meta-llama/Llama-3.1-8B"  # Use if available
+
+  quantization:
+    load_in_4bit: true
+    bnb_4bit_compute_dtype: "bfloat16"
+    bnb_4bit_quant_type: "nf4"
+
+## Phase 1: Instruction-Tuning Hyperparameters
+# Improvements from RESEARCH.pdf + Phase 1 optimization
+
+training:
+  # LoRA Configuration (Phase 1: Increased from r=16 to r=32)
+  lora:
+    r: 32  # Rank (increased from 16)
+    alpha: 32  # Rank-stabilized (from paper: r=16, α=16)
+    dropout: 0.05
+    target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]
+
+  # Learning & Optimization (Phase 1 optimized)
+  learning_rate: 2e-4  # Increased from default ~5e-5
+  warmup_steps: 500
+  warmup_ratio: 0.0
+  weight_decay: 0.1
+
+  # Training Schedule (Phase 1: 15,000 steps target)
+  num_train_epochs: 5
+  max_steps: 15000
+  per_device_train_batch_size: 4  # Adjust based on VRAM
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 4  # Effective batch = 4 * 4 = 16
+
+  # Sequence Length (Phase 1: Increased from 2048 to 4096)
+  max_seq_length: 4096
+
+  # Optimization
+  optimizer: "paged_adamw_32bit"
+  optim_kwargs:
+    max_grad_norm: 1.0
+  gradient_checkpointing: true
+
+  # Precision
+  bf16: true
+  fp16: false
+
+## Evaluation Metrics (Phase 1: Added)
+evaluation:
+  # Classification Metrics (from paper)
+  tasks:
+    - cancer_type_identification
+    - ajcc_stage_determination
+    - prognosis_assessment
+
+  metrics:
+    - accuracy
+    - f1_score
+    - precision
+    - recall
+    - confusion_matrix
+
+  # Survival Ranking (C-index)
+  c_index: true
+
+  # Kaplan-Meier Curves
+  kaplan_meier: true
+
+  # Number of samples for evaluation
+  n_eval_samples: 300
+
+## Training Features
+training_features:
+  early_stopping:
+    enabled: true
+    patience: 3
+    metric: "eval_loss"
+
+  checkpointing:
+    save_steps: 1000
+    eval_steps: 500
+    logging_steps: 100
+    save_total_limit: 3
+    load_best_model_at_end: true
+
+  mixed_precision:
+    use_bf16: true
+    use_fp16: false
+
+  experiment_tracking:
+    wandb:
+      enabled: true
+      project: "cancer-survival-phase1"
+      run_name: "llama_instruction_tuning"
+
+## Output Configuration
+output:
+  model_dir: "models/llama_instruction_tuned"
+  results_dir: "data/processed/evaluation"
+  save_formats:
+    - "pytorch"  # For inference
+    - "safetensors"  # For security
+
+## Hardware Requirements
+hardware:
+  recommended_gpu_vram: 24  # GB (for A100/A6000)
+  minimum_gpu_vram: 16  # GB (with gradient checkpointing)
+  cpu_ram: 64  # GB recommended
+
+## Performance Targets (Phase 1 Goals)
+targets:
+  cancer_type_accuracy: 0.90  # +5% improvement
+  ajcc_stage_f1: 0.85
+  survival_c_index: 0.68  # +3% from baseline
+  convergence_steps: 15000
+
+## Execution Order
+execution_steps:
+  1. "Generate instruction-tuning data: python generate_instruction_tuning_data.py"
+  2. "Fine-tune model: python llama_finetune_instruction.py"
+  3. "Evaluate results: python evaluate_instruction_tuned.py"
+  4. "Compare with baselines: python compare_strategies.py"

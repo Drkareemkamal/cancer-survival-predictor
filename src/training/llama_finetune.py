@@ -353,9 +353,9 @@ if __name__ == "__main__":
         print("Llama-3 requires authentication to download. Please set HF_TOKEN.")
     
     train_and_extract(
-        data_path='data/processed/merged_tcga_data_final.csv',
+        data_path='data/processed/merged_tcga_data_text_dedup.csv',
         output_dir='data/processed',
-        max_epochs=20,       # Train up to 20 epochs max
+        max_epochs=5,       # Train up to 20 epochs max
         patience=3,          # Stop if no improvement for 3 epochs
         val_split=0.15,      # 15% validation holdout
         hf_token=hf_token,
