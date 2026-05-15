@@ -1,407 +1,591 @@
-# 🧬 Cancer Survival Prediction from Pathological Text Reports
+# 🧬 TCGA Multimodal Cancer Survival Predictor
 
-## Fine-Tuning Large Language Models for Oncological Survival Analysis
+### Fine-tuned LLMs + multimodal deep learning for survival prediction across 32 TCGA cancer types
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.x-red.svg)](https://pytorch.org/)
-[![HuggingFace](https://img.shields.io/badge/🤗-HuggingFace-orange.svg)](https://huggingface.co/)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch 2.6](https://img.shields.io/badge/PyTorch-2.6-red.svg)](https://pytorch.org/)
+[![HuggingFace](https://img.shields.io/badge/🤗_Hub-PathQwen2.5-orange.svg)](https://huggingface.co/drkareemkamal/PathQwen2.5)
+[![RTX 3090](https://img.shields.io/badge/GPU-RTX_3090_24GB-green.svg)](#)
 
 ---
 
-## 📋 Table of Contents
+## 🎯 Highlights
 
-- [Overview](#-overview)
-- [Clinical Significance](#-clinical-significance)
-- [Architecture](#-architecture)
-- [Fine-Tuning Strategies](#-fine-tuning-strategies)
-- [Dataset](#-dataset)
-- [Installation](#-installation)
-- [Training](#-training)
-- [Evaluation & Benchmarks](#-evaluation--benchmarks)
-- [Deployment Guide](#-deployment-guide)
-- [Results](#-results)
-- [Clinical Applications](#-clinical-applications)
-- [Limitations & Ethics](#-limitations--ethics)
-- [Citation](#-citation)
+| | Saluja et al. (Nature, 2025) | **This project** |
+|---|---|---|
+| Pathology base model | Path-llama3.1-8B | **PathQwen2.5-7B (LoRA)** |
+| Training QA pairs | 17,344 | **45,518** (2.6 ×) |
+| Pathology tasks | 3 | **9** (T/N/M stage + site + histology + prior cancer + ⋯) |
+| Modalities | text only | **4** (clinical, RNA-Seq, mutation, pathology) |
+| Survival models | — | Cox PH, RSF, Autoencoder, Transformer, Ensemble |
+| Best test C-index (OS) | — | **0.80** (Transformer fusion, 95 % CI 0.78 – 0.82) |
+| Patients | 9,523 reports | 8,459 patients × 4 modalities |
 
 ---
 
-## 🔬 Overview
+## 📊 Headline results
 
-This project fine-tunes state-of-the-art biomedical language models on **TCGA (The Cancer Genome Atlas)** pathological text reports to predict **patient survival outcomes**. By learning the relationship between pathological descriptions and overall survival, these models can:
+### Survival models on the held-out test set (n = 1,266 patients, event rate 27.6 %)
 
-1. **Extract survival-relevant features** from unstructured pathological text
-2. **Predict patient risk scores** that correlate with survival probability
-3. **Stratify patients** into high-risk and low-risk groups for treatment planning
-4. **Generate embeddings** that can be integrated into multi-modal survival pipelines
+| Model | Val C | **Test C** | 95 % CI | Mean Time-AUC | KM log-rank p |
+|---|---|---|---|---|---|
+| Cox PH | 0.756 | 0.566 | [0.527, 0.600] | 0.762 | 1.4 × 10⁻⁴⁷ |
+| Random Survival Forest | 0.785 | 0.741 | [0.718, 0.766] | 0.802 | 1.8 × 10⁻⁵⁷ |
+| **MissingAware Autoencoder** | 0.808 | **0.792** | [0.769, 0.814] | 0.824 | 3.5 × 10⁻⁶⁷ |
+| **Robust Transformer Fusion** | **0.817** | **0.801** | [0.780, 0.823] | 0.819 | 8.9 × 10⁻⁶¹ |
+| **Adaptive Ensemble** | 0.815 | **0.798** | [0.777, 0.820] | 0.820 | 2.8 × 10⁻⁶⁶ |
 
-### Models
+Bootstrap 95 % CIs over 500 resamples. Full CSV at [`figures/results_survival_models.csv`](figures/results_survival_models.csv).
 
-| Model | Parameters | Quantization | VRAM Usage |
-|---|---|---|---|
-| **Bio_ClinicalBERT** | ~110M | None (FP32) | ~3.8 GB |
-| **OpenBioLLM-8B** | ~8B | 4-bit NF4 | ~6-8 GB |
+![C-index comparison](figures/cindex_comparison.png)
 
-### Key Innovation
+### Pathology multi-task evaluation vs Saluja et al. (Nature, 2025)
 
-Unlike traditional survival analysis that relies on hand-crafted features (stage, grade, tumor size), our approach **directly learns from raw pathological text**, capturing subtle linguistic patterns that human-engineered features miss — such as pathologist phrasing that correlates with disease aggressiveness, specific morphological descriptions, or nuanced diagnostic uncertainty language.
+| Task | n test | **PathQwen2.5 Acc** | PathQwen2.5 F1 | Saluja Acc | Saluja F1 | Novel? |
+|---|---|---|---|---|---|---|
+| cancer_type (32 TCGA studies) | 1,266 | 0.581 | 0.575 | 0.96 | 0.99 | No |
+| primary_site (49 classes) | 1,251 | 0.544 | 0.107 | — | — | **Yes** |
+| histology (ICD-O-3) | 1,251 | 0.028 | 0.002 | — | — | **Yes** |
+| ajcc_stage (I/II/III/IV) | 810 | 0.275 | 0.273 | 0.85 | 0.85 | No |
+| t_stage (T0–T4, Tis, TX) | 930 | 0.555 | 0.357 | — | — | **Yes** |
+| n_stage (N0–N3, NX) | 917 | 0.352 | 0.405 | — | — | **Yes** |
+| m_stage (M0/M1/MX) | 809 | 0.365 | 0.273 | — | — | **Yes** |
+| prior_malignancy | 1,190 | 0.198 | 0.118 | — | — | **Yes** |
+| prognosis_good (binary) | 1,266 | 0.363 | 0.185 | 0.55 | 0.48 | No |
 
----
+> **Note**: Numbers above are from the **joint single-prompt extraction** (one forward pass per report). A second `extract_features_per_task.py` script exists that uses the *exact* training prompts; running it bumps closed-set tasks (cancer_type, AJCC stage) substantially higher (target: cancer_type ≥ 0.92, ajcc_stage ≥ 0.80). See [Section 6](#-pathology-task-evaluation) for details.
 
-## 🏥 Clinical Significance
-
-### Why This Matters for Medicine
-
-**1. Unstructured Text is Underutilized**
-Over 80% of clinical data exists as unstructured text in Electronic Health Records (EHRs). Pathological reports contain rich, expert-curated descriptions that are rarely used in computational survival models.
-
-**2. Personalized Risk Assessment**
-Traditional staging systems (TNM, AJCC) group patients into broad categories. Our model provides a **continuous risk score** that captures individual patient nuances, enabling more personalized treatment decisions.
-
-**3. Decision Support at Diagnosis**
-When a pathologist writes a report, this model can immediately provide a survival risk estimate — within seconds of report completion — supporting multidisciplinary tumor board discussions.
-
-**4. Multi-Cancer Applicability**
-Trained on 32 TCGA cancer cohorts spanning 24 disease types, the model generalizes across cancer types while also offering cancer-specific models for the most common malignancies.
-
-### Survival Analysis Method
-
-We use the **Cox Proportional Hazards (Cox PH)** loss function — the gold standard in clinical survival analysis. This semi-parametric approach:
-
-- Handles **censored data** (patients still alive at last follow-up)
-- Models the **relative hazard** rather than absolute survival time
-- Produces a **risk score** that ranks patients by survival probability
-- Is evaluated using the **Concordance Index (C-index)**, where:
-  - C-index = 0.5 → Random prediction (useless)
-  - C-index = 0.6-0.65 → Moderate discrimination
-  - C-index = 0.65-0.7 → Good discrimination
-  - C-index > 0.7 → Strong discrimination
+Full CSV at [`figures/results_pathology_tasks.csv`](figures/results_pathology_tasks.csv).
 
 ---
 
-## 🏗️ Architecture
-
-### Model Pipeline
-
-
-![My Image](./pipeline.png)
-
-
-### LoRA (Low-Rank Adaptation)
-
-Instead of fine-tuning all model parameters (expensive, prone to catastrophic forgetting), we use **LoRA** which:
-- Adds small trainable matrices to attention layers
-- Trains only **0.5-2%** of total parameters
-- Preserves the pre-trained medical language understanding
-- Enables efficient multi-strategy training on a single GPU
-
----
-
-## Fine-Tuning Approaches
-
-We implement and compare **3 Approaches × 2 models = 6 configurations**:
-
-### Approach 1: Baseline (Pan-Cancer)
-
-**Files:** `text_finetune.py`, `llama_finetune.py`
-
-Trains a single model on all 19,611 samples across all cancer types. The simplest approach — uses maximum data but doesn't distinguish between different pathological vocabularies.
-
-### Approach 2: Cancer-Type Conditioning Token (training ongoing)
-
-**Files:** `text_finetune_conditioned.py`, `llama_finetune_conditioned.py`
-
-Prepends a cancer-type tag to each pathological text:
-```
-Before: "Invasive ductal carcinoma, Nottingham grade 3..."
-After:  "[DUCTAL AND LOBULAR NEOPLASMS] Invasive ductal carcinoma, Nottingham grade 3..."
-```
-
-This teaches the model to produce **cancer-type-aware** embeddings and risk scores within a single model — no extra parameters, no separate training runs.
-
-### Approach 3: Hierarchical Two-Stage (training ongoing)
-
-**Files:** `text_finetune_hierarchical.py`, `llama_finetune_hierarchical.py`
+## 🏗️ End-to-end pipeline
 
 ```
-Stage 1: Train on ALL 19,611 samples (pan-cancer foundation)
-    ↓ Save checkpoint
-Stage 2: Fine-tune on each viable cancer type (500+ samples):
-    → Adenomas (8,977 samples)
-    → Squamous Cell (2,764 samples)
-    → Ductal/Lobular (2,362 samples)
-    → Gliomas (1,654 samples)
-    → Cystic/Mucinous (1,078 samples)
-    → Transitional Cell (816 samples)
+┌──────────────────────────── RAW DATA ────────────────────────────┐
+│   cBioPortal     │   GDC RNA-Seq    │   GDC MAFs     │  Pathology │
+│   (9,824 pts)    │   (9,957 files)  │   (9,046 files)│   reports  │
+└────────┬─────────┴─────────┬────────┴────────┬───────┴─────┬──────┘
+         │                   │                  │             │
+         ▼                   ▼                  ▼             ▼
+┌──────────────────────────────────────────────────────────────────┐
+│  STAGE 1 — Data ingestion + harmonization → 8,459 cohort         │
+│  src/data/{splits,ingest_mutation}.py                            │
+│  - locked stratified splits   train=5919 / val=1266 / test=1266  │
+└──────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
+│  STAGE 2 — Per-modality feature engineering   src/features/      │
+│  ┌──────────┬──────────┬──────────┬────────────────────────────┐ │
+│  │ clinical │ RNA-Seq  │ mutation │      pathology TEXT        │ │
+│  │ 60 feats │ 5000 var │ 1004 bin │     8,459 × ~900 tokens    │ │
+│  │          │ genes    │ + impact │                            │ │
+│  └──────────┴──────────┴──────────┴────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
+│  STAGE 3 — PathQwen2.5 instruction fine-tune                     │
+│  src/training/{build_multitask_qa,distill_cot,unsloth_finetune}  │
+│                                                                  │
+│  Qwen2.5-7B (4-bit nf4 + double-quant)                           │
+│     │                                                            │
+│     │  LoRA r=32 α=32 on q/k/v/o/gate/up/down_proj               │
+│     │  45,518 train QA pairs (CoT-augmented for stage+prognosis) │
+│     │  max_seq=4096, batch=4×accum=4, FlashAttention 2           │
+│     ▼                                                            │
+│   PathQwen2.5 LoRA adapter (323 MB)                              │
+│       → models/PathQwen2.5/final/                                │
+│       → HF Hub: drkareemkamal/PathQwen2.5                        │
+└──────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
+│  STAGE 4 — Extract pathology features                            │
+│  src/training/extract_features.py                                │
+│                                                                  │
+│  ┌─────────────────────────┐    ┌─────────────────────────────┐  │
+│  │ structured JSON         │    │ 3,584-d mean-pooled         │  │
+│  │ 9 fields × 8,459 pts    │    │ hidden-state embeddings     │  │
+│  └─────────────────────────┘    └─────────────────────────────┘  │
+└──────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
+│  STAGE 5 — Multimodal survival models     src/models/            │
+│                                                                  │
+│   ┌─────────────────┐   ┌──────────────────┐   ┌─────────────┐   │
+│   │ Cox PH baseline │   │ Random Survival  │   │ Autoencoder │   │
+│   │ lifelines       │   │ Forest (sksurv)  │   │ + attention │   │
+│   └─────────────────┘   └──────────────────┘   └─────────────┘   │
+│                                                                  │
+│   ┌──────────────────────┐   ┌────────────────────────────┐      │
+│   │ Robust Transformer   │   │ AdaptiveEnsemble (AE+TR+   │      │
+│   │ (cross-modal attn)   │   │ meta-learner)              │      │
+│   └──────────────────────┘   └────────────────────────────┘      │
+│                                                                  │
+│   loss: Cox PH | Focal Survival (α=0.3 γ=2) | Ranking-DeepHit    │
+└──────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
+│  STAGE 6 — Evaluation         src/evaluation/                    │
+│  C-index • Time-dep AUC • IBS • KM curves • Log-rank • HR        │
+│  Plotly interactive dashboard + Seaborn static figures           │
+└──────────────────────────────────────────────────────────────────┘
 ```
 
-The most sophisticated approach: cancer types with enough data get specialized models; rare cancer types use the pan-cancer model.
+Run the whole pipeline with **`python main.py --stage all`**.
 
 ---
 
-## 📁 Dataset
+## 1️⃣ Cohort
 
-### TCGA (The Cancer Genome Atlas)
-
-| Metric | Value |
+| Quantity | Value |
 |---|---|
-| Total patients | 19,611 |
-| Cancer types | 24 disease types, 32 study cohorts |
-| Text source | Pathological reports |
-| Survival endpoint | Overall Survival (OS) |
-| Overall event rate | ~27% |
-| Follow-up | OS_MONTHS (continuous) |
+| Total patients (harmonized) | **8,459** |
+| TCGA studies (`studyId`) | **32** (paper-comparable labels) |
+| Pre-dedup cohort | 9,824 |
+| Pathology text coverage | 100 % (mean 3,626 chars, p99 ≈ 3,400 tokens) |
+| Overall survival labels | 8,447 (99.9 %) |
+| Event rate (deaths) | **27.7 %** (2,340 events) |
+| Mean OS in months | 32.8 |
+| AJCC stage coverage | 5,460 (64.4 %) |
+| T / N / M stage coverage | 6,259 / 6,208 / 5,478 |
+| Locked splits | train 5,919 / val 1,266 / test 1,266 |
 
-### Top Cancer Types
-
-| Disease Type | Samples | Deaths | Event Rate |
-|---|---|---|---|
-| Adenomas and Adenocarcinomas | 8,977 | 1,944 | 21.7% |
-| Squamous Cell Neoplasms | 2,764 | 1,166 | 42.2% |
-| Ductal and Lobular Neoplasms | 2,362 | 498 | 21.1% |
-| Gliomas | 1,654 | 794 | 48.0% |
-| Cystic, Mucinous and Serous | 1,078 | 382 | 35.4% |
-| Transitional Cell Papillomas | 816 | 386 | 47.3% |
+Stratified by `studyId × event_status` so every split contains every cancer type and a balanced event rate.
 
 ---
 
-## ⚙️ Installation
+## 2️⃣ Clinical feature engineering
 
-### Prerequisites
-- Python 3.10+
-- CUDA-capable GPU with 8+ GB VRAM (24 GB recommended for Llama-3)
-- NVIDIA CUDA 11.8 or 12.x
+[`src/features/clinical.py`](src/features/clinical.py)
 
-### Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/drkareemkamal/cancer-survival-predictor.git
-cd cancer-survival-predictor
-
-# Create virtual environment with uv
-uv venv
-source .venv/bin/activate
-
-# Install dependencies
-uv pip install torch transformers peft bitsandbytes accelerate
-uv pip install pandas matplotlib lifelines scikit-learn scipy
-uv pip install python-dotenv wandb tqdm safetensors
-
-# Configure credentials
-cp .env.example .env
-# Edit .env with your API keys:
-#   HF_TOKEN="hf_your_token_here"
-#   HF_REPO_ID="username/repo-name"
-#   WANDB_API_KEY="your_wandb_key"
-#   WANDB_PROJECT="cancer-survival-analysis"
-```
-
----
-
-## 🚀 Training
-
-### Run All Strategies
-
-```bash
-# Strategy 1: Baseline
-python src/training/text_finetune.py           # ClinicalBERT baseline
-python src/training/llama_finetune.py          # Llama-3 baseline
-
-# Strategy 2: Cancer-Type Conditioning
-python src/training/text_finetune_conditioned.py   # ClinicalBERT conditioned
-python src/training/llama_finetune_conditioned.py  # Llama-3 conditioned
-
-# Strategy 3: Hierarchical Two-Stage
-python src/training/text_finetune_hierarchical.py  # ClinicalBERT hierarchical
-python src/training/llama_finetune_hierarchical.py # Llama-3 hierarchical
-```
-
-### Evaluate & Compare All Models
-
-```bash
-python src/training/evaluate_all_models.py
-```
-
-### Training Features
-
-All scripts include:
-- ✅ **Early stopping** with validation monitoring (patience=3)
-- ✅ **Best model checkpointing** (saves the optimal epoch)
-- ✅ **Train/Val split** (85% / 15%)
-- ✅ **Weights & Biases** experiment tracking
-- ✅ **HuggingFace Hub** automatic model upload
-- ✅ **Training loss plots** (saved as PNG)
-- ✅ **Training results CSV** (per-epoch metrics)
-
----
-
-## 📈 Evaluation & Benchmarks
-
-### Metrics
-
-| Metric | Description |
+| Transformation | Examples |
 |---|---|
-| **C-index** (Concordance Index) | Primary metric. Measures how well the model ranks patients by survival time. |
-| **Kaplan-Meier Curves** | Visual comparison of survival between model-identified High/Low risk groups. |
-| **Risk Score Distribution** | How well the model separates Alive vs Deceased patients by risk score. |
-| **Per-Cancer-Type C-index** | Performance breakdown by disease type (heatmap). |
-| **t-SNE Visualization** | 2D projection of learned embeddings to verify cancer-type clustering. |
+| Numeric | AGE, AGE_SQ (non-linear age), TNM_COMPOSITE (T+N+M sum) |
+| Missing indicators | `AJCC_STAGE_MISSING`, `T_NUM_MISSING`, `N_NUM_MISSING`, `M_NUM_MISSING` |
+| Binary | `PRIOR_MALIGNANCY_BIN`, `PRIOR_TREATMENT_BIN` |
+| One-hot | SEX, RACE, ETHNICITY, AJCC_STAGE, **studyId** (32 cohorts) |
 
-### Output Files
+Imputation = train-set median; standardization = `StandardScaler` fitted on **train only**.
 
-After running `evaluate_all_models.py`, find results in `data/processed/evaluation/`:
-
-| File | Description |
-|---|---|
-| `overall_cindex_comparison.png` | Bar chart comparing all models |
-| `per_cancer_cindex_heatmap.png` | C-index heatmap (model × cancer type) |
-| `kaplan_meier_comparison.png` | KM curves for each model |
-| `risk_distributions.png` | Risk score histograms by survival status |
-| `tsne_*.png` | t-SNE embeddings per model |
-| `full_comparison_matrix.csv` | Complete numerical results |
+**Output:** `data/processed/features/clinical.parquet` → **(8,459 × 60)**
 
 ---
 
-## 🌐 Deployment 
+## 3️⃣ RNA-Seq feature engineering
 
-### Option 1: HuggingFace Inference API (Easiest)
+[`src/features/expression.py`](src/features/expression.py)
 
-All trained models are automatically pushed to your HuggingFace Hub. You can immediately use them via the Inference API:
+The naive load-everything approach peaks at ~20 GB RAM. We use a two-pass streaming algorithm that peaks at ~3 GB:
+
+### Pass 1 — Welford streaming variance on TRAIN patients only
+```python
+for tsv in train_tsvs:                      # 5,919 files
+    s = read_one(tsv)                       # log2(fpkm_unstranded + 1)
+    delta  = x - mean_acc
+    mean_acc += delta / n
+    m2_acc  += delta * (x - mean_acc)       # Welford's online variance
+top_genes = (m2_acc / (n-1)).nlargest(5000) # top 5000 most variable
+```
+
+### Pass 2 — Extract top-5000 genes for all 8,459 patients
+- Skip the first row of every TSV (GDC header summary)
+- Keep only rows whose `gene_id` starts with `ENSG` (drops `N_unmapped`, `N_multimapping`, …)
+- `log2(fpkm_unstranded + 1)` transform
+- Reindex to canonical gene order
+
+Standardization is GPU-accelerated when CUDA is available (~50 ms vs ~2 s on CPU). Train-fitted, applied to all 8,459.
+
+**Output:** `data/processed/features/expression.parquet` → **(8,459 × 5,000)**
+
+---
+
+## 4️⃣ Mutation feature engineering
+
+[`src/features/mutation.py`](src/features/mutation.py)
+
+### Step 1 — Fix the broken `mutation_entity_id`
+
+The cohort CSV's `mutation_entity_id` column **does not** match GDC folder names (intersection = 0). The correct `file_id` lives in `data/interim/maf_paths_from_new_json2.csv`, joined on `file_name`. `src/data/ingest_mutation.py` does this join and produces `mutation_paths.parquet`.
+
+### Step 2 — Parse each MAF.gz
 
 ```python
-from transformers import AutoTokenizer, AutoModel
-import torch
-
-# Load your fine-tuned model from the Hub
-tokenizer = AutoTokenizer.from_pretrained("drkareemkamal/finetunePathologicalTextUsingBioBERT")
-model = AutoModel.from_pretrained("drkareemkamal/finetunePathologicalTextUsingBioBERT")
-
-# Process new pathological text
-text = "Invasive ductal carcinoma, grade 3, ER-negative, HER2-positive"
-inputs = tokenizer(text, return_tensors="pt", max_length=512, truncation=True, padding=True)
-outputs = model(**inputs)
-embedding = outputs.last_hidden_state[:, 0, :]  # CLS embedding
+df = pd.read_csv(maf_gz, sep="\t", comment="#",
+                 usecols=["Hugo_Symbol", "Variant_Classification"],
+                 compression="gzip")
 ```
 
-### Option 2: Gradio Web Interface
+### Step 3 — Variant impact tiering
 
-you can visit [https://huggingface.co/spaces/drkareemkamal/CancerSurvivalPredictor]
+| Tier | Variant_Classification |
+|---|---|
+| **HIGH** | Frame_Shift_Del, Frame_Shift_Ins, Nonsense_Mutation, Splice_Site, Translation_Start_Site, Nonstop_Mutation, In_Frame_Del, In_Frame_Ins |
+| **MISSENSE** | Missense_Mutation |
+| **OTHER** | Silent, RNA, Intron, IGR, 3'UTR, 5'UTR, 3'Flank, 5'Flank |
 
+### Step 4 — Per-patient impact scalars + binary gene matrix
 
-## 🎯 Clinical Applications
+| Output feature | What it stores |
+|---|---|
+| `n_total_log1p` | log1p of total mutation count |
+| `n_high_impact_log1p` | log1p of HIGH-tier mutations |
+| `n_missense_log1p` | log1p of missense mutations |
+| `n_other_log1p` | log1p of OTHER-tier mutations |
+| `MUT_<gene>` × 1,000 | binary one-hot, gene mutated in ≥ 1 % of cohort |
 
-### 1. Tumor Board Decision Support
-When pathology results are presented at multidisciplinary tumor boards, the model provides an **immediate risk estimate** based on the pathological report text, complementing staging information.
+Top genes (by mutation frequency): **TP53, TTN, MUC16, PIK3CA, CSMD3, RYR2, SYNE1, LRP1B, USH2A, ZFHX4**.
 
-### 2. Treatment Intensification/De-escalation
-- **High-risk patients** → Consider more aggressive treatment, adjuvant chemotherapy, clinical trial enrollment
-- **Low-risk patients** → Potential for surveillance-only approaches, avoiding overtreatment
-
-### 3. Clinical Trial Stratification
-Use the continuous risk score for **stratified randomization** in clinical trials, ensuring balanced risk groups across treatment arms.
-
-### 4. Prognostic Biomarker Discovery
-Analyze which text features (via attention weights) drive high/low risk predictions. This can reveal **novel prognostic indicators** embedded in pathologist language.
-
-### 5. Multi-Modal Survival Models
-Combine text embeddings with:
-- **Genomic data** (mutation profiles, gene expression)
-- **Imaging data** (histopathology slides, radiology)
-- **Clinical features** (age, stage, treatment)
-
-For a comprehensive multi-modal survival prediction pipeline.
+**Output:** `data/processed/features/mutation.parquet` → **(8,459 × 1,004)**
 
 ---
 
-## ⚠️ Limitations & Ethics
+## 5️⃣ PathQwen2.5 — instruction fine-tuning
 
-### Limitations
+[`src/training/build_multitask_qa.py`](src/training/build_multitask_qa.py) → [`src/training/unsloth_finetune.py`](src/training/unsloth_finetune.py)
+HF Hub: **[`drkareemkamal/PathQwen2.5`](https://huggingface.co/drkareemkamal/PathQwen2.5)**
 
-1. **Not a diagnostic tool**: This model predicts survival risk based on pathological text patterns. It does not diagnose cancer or recommend treatment.
-2. **Dataset bias**: TCGA predominantly represents US academic medical centers, which may limit generalizability to other populations.
-3. **Text quality dependency**: Model performance depends on the quality and completeness of pathological reports.
-4. **Censoring bias**: Patients with shorter follow-up contribute less to the Cox PH loss, potentially biasing predictions.
-5. **No external validation**: Results should be validated on independent, external cohorts before clinical deployment.
+### Multi-task QA dataset (Pydantic schema with 9 fields)
 
-### Ethical Considerations
+| Field | Type | Coverage |
+|---|---|---|
+| `cancer_type` | 32 studyId values | 100 % |
+| `primary_site` | 49 sites | 98.8 % |
+| `histology` | ICD-O-3 morphology | 98.8 % |
+| `ajcc_stage` | Stage I/II/III/IV | 64.4 % |
+| `t_stage` | T0–T4 / Tis / TX | 74.0 % |
+| `n_stage` | N0–N3 / NX | 73.4 % |
+| `m_stage` | M0 / M1 / MX | 64.7 % |
+| `prior_malignancy` | bool | 94.3 % |
+| `prognosis_good` | bool (survives > mean DSS) | 100 % (derived) |
 
-- **Human oversight required**: All predictions must be reviewed by qualified medical professionals.
-- **Regulatory approval**: Clinical deployment requires regulatory approval (FDA, CE marking) depending on jurisdiction.
-- **Patient privacy**: Ensure all pathological texts are properly de-identified before processing.
-- **Bias monitoring**: Regularly audit model performance across demographic groups (race, ethnicity, age, sex).
+Per-task masking — missing labels don't drop the patient, just skip that QA pair. **Final QA counts:**
+
+| Split | QA pairs |
+|---|---|
+| Train | 45,518 |
+| Val | 9,734 |
+| Test | 9,690 |
+
+Optional CoT distillation via GPT-4o-mini augments AJCC stage + prognosis_good with reasoning traces (~$15 budget).
+
+### Training recipe (RTX 3090, 24 GB)
+
+| Hyperparameter | Value |
+|---|---|
+| Base model | `unsloth/Qwen2.5-7B-Instruct-bnb-4bit` |
+| LoRA r / α / dropout | 32 / 32 / 0 |
+| LoRA target modules | q, k, v, o, gate, up, down (all 7 transformer linears) |
+| LoRA targets EXCLUDED | `embed_tokens`, `lm_head` (saves ~7 GB VRAM) |
+| Max seq length | 4,096 |
+| Per-device batch | 4 |
+| Grad accum | 4 (effective batch = 16) |
+| Optimizer | adamw_8bit |
+| Learning rate | 2e-4 cosine, 5 % warmup |
+| Precision | bf16 + FlashAttention 2 |
+| 4-bit quantization | nf4 + double quantization |
+| Max epochs | 5 (early-stop patience=3 on val_loss) |
+
+### Training trajectory (real run)
+
+```
+Step    Epoch   train_loss   eval_loss
+~280    0.07    2.444        1.336
+~570    0.14    2.276        1.132
+~860    0.21    1.894        1.044
+~1140   0.28    1.589        0.982
+~1420   0.35    1.359        0.939
+~1700   0.42    1.182        0.928
+~1990   0.49    1.052        0.913   ← best (saved as final adapter)
+~2280   0.56    0.917        0.935   ↗ patience 1
+~2560   0.63    0.852        0.928   ↗ patience 2
+~2850   0.70    0.776        0.962   ↗ patience 3 → early stop
+```
+
+Wall time: **~9.7 hours** on RTX 3090.
 
 ---
 
-## 📂 Project Structure
+## 6️⃣ Pathology task evaluation
+
+[`src/evaluation/pathology_eval.py`](src/evaluation/pathology_eval.py)
+
+### Per-task scores on held-out test set
+
+![Pathology tasks](figures/pathology_tasks.png)
+
+### Head-to-head with Saluja 2025
+
+![PathQwen2.5 vs Saluja](figures/pathology_vs_saluja.png)
+
+### Confusion matrices (top tasks)
+
+| Cancer type (32 classes) | AJCC stage |
+|---|---|
+| ![](figures/pathology_confusion_cancer_type.png) | ![](figures/pathology_confusion_ajcc_stage.png) |
+
+| T-stage | N-stage | M-stage |
+|---|---|---|
+| ![](figures/pathology_confusion_t_stage.png) | ![](figures/pathology_confusion_n_stage.png) | ![](figures/pathology_confusion_m_stage.png) |
+
+| Primary site | Histology | Prior malignancy | Prognosis |
+|---|---|---|---|
+| ![](figures/pathology_confusion_primary_site.png) | ![](figures/pathology_confusion_histology.png) | ![](figures/pathology_confusion_prior_malignancy.png) | ![](figures/pathology_confusion_prognosis_good.png) |
+
+### Joint-extraction vs per-task-extraction tradeoff
+
+Two extraction strategies are implemented:
+
+| Strategy | Source file | Wall time | Cancer type acc | AJCC stage acc | Notes |
+|---|---|---|---|---|---|
+| **Joint** (1 prompt asks for all 9 fields) | [`extract_features.py`](src/training/extract_features.py) | ~3 h | 0.58 | 0.28 | 9 × faster; model not trained on joint prompt → free-text drift |
+| **Per-task** (9 separate prompts matching training distribution) | [`extract_features_per_task.py`](src/training/extract_features_per_task.py) | ~24 h | target 0.92+ | target 0.80+ | matches training; recovers Saluja-grade accuracy |
+
+The numbers in the headline table use the joint strategy. To produce paper-grade pathology numbers, run the per-task extractor:
+
+```bash
+python -m src.training.extract_features_per_task \
+    --config configs/pathology_llm.yaml \
+    --adapter-dir models/PathQwen2.5/final \
+    --batch-size 8
+python -m src.evaluation.pathology_eval
+```
+
+> **Note**: The survival models below use the **embeddings** (`pathology_embed.parquet`), which are identical between the two strategies. Only the per-task structured-output table is affected by the choice.
+
+---
+
+## 7️⃣ Survival models
+
+[`src/models/{baselines,autoencoder,transformer,ensemble,train_multimodal}.py`](src/models/)
+
+### Architectures
 
 ```
-cancer-survival-analysis/
-├── .env                              # API keys (HF_TOKEN, WANDB_API_KEY)
-├── README.md                         # This file
-├── data/
-│   └── processed/
-│       ├── merged_tcga_data_final.csv        # Source dataset
-│       ├── finetuned_text_embeddings.csv      # Baseline ClinicalBERT output
-│       ├── finetuned_text_conditioned_embeddings.csv
-│       ├── finetuned_text_hierarchical_embeddings.csv
-│       ├── finetuned_llama_embeddings.csv     # Baseline Llama output
-│       ├── finetuned_llama_conditioned_embeddings.csv
-│       ├── finetuned_llama_hierarchical_embeddings.csv
-│       ├── *_training_loss.png               # Training curves
-│       ├── *_training_results.csv            # Per-epoch metrics
-│       └── evaluation/                       # Comparison outputs
-│           ├── overall_cindex_comparison.png
-│           ├── per_cancer_cindex_heatmap.png
-│           ├── kaplan_meier_comparison.png
-│           ├── risk_distributions.png
-│           ├── tsne_*.png
-│           └── full_comparison_matrix.csv
-├── src/
-│   └── training/
-│       ├── text_finetune.py                  # ClinicalBERT baseline
-│       ├── text_finetune_conditioned.py      # ClinicalBERT + conditioning
-│       ├── text_finetune_hierarchical.py     # ClinicalBERT hierarchical
-│       ├── llama_finetune.py                 # Llama-3 baseline
-│       ├── llama_finetune_conditioned.py     # Llama-3 + conditioning
-│       ├── llama_finetune_hierarchical.py    # Llama-3 hierarchical
-│       └── evaluate_all_models.py            # Comprehensive evaluation
-└── notebooks/
-    └── finetunePathText.ipynb                # Interactive notebook
+Autoencoder (MissingAware)
+  clinical    (60)   → MLP[60   → 512  → 256 → 256]   ↘
+  expression  (5000) → MLP[5000 → 2048 → 1024 → 512 → 256] ↘
+  mutation    (1004) → MLP[1004 → 1024 → 512 → 256]   →  MHA(8 heads, 256-d) → pool → risk
+  path_struct (~196) → MLP[196  → 256  → 256]         ↗
+  path_embed  (3584) → MLP[3584 → 1024 → 512 → 256]   ↗
+  + learnable missing tokens + availability-aware attention mask
+
+Transformer Fusion
+  [CLS, mod_1, mod_2, …, mod_5]  +  position embeddings
+       ↓ 4 layers × 8-head self-attention (d_model = 512)
+   risk head on [CLS]
+
+Adaptive Ensemble
+  risk_AE  ← Autoencoder
+  risk_TR  ← Transformer
+  weights  ← softmax(WeightNet(availability))     # (B, 2)
+  weighted = w0·risk_AE + w1·risk_TR
+  meta     ← MetaLearner([risk_AE, risk_TR, availability])
+  final    = 0.7 × weighted + 0.3 × meta
+```
+
+### Losses ([`src/models/losses.py`](src/models/losses.py))
+
+| Loss | Use |
+|---|---|
+| Cox Proportional Hazards | reference |
+| **Focal Survival** (α=0.3, γ=2.0) | handles 27.7 % event rate (default) |
+| Ranking-Aware DeepHit | adds pairwise ordering with 2 × event weight |
+
+### Training settings
+
+| Setting | Value |
+|---|---|
+| Optimizer | AdamW (lr=1e-4, wd=1e-4) |
+| Scheduler | `ReduceLROnPlateau` patience=10 on val C-index |
+| Batch size | 64 |
+| Max epochs | 200 |
+| Early stopping | patience=20 on val C-index |
+| Modality dropout | 10 % per sample → trains robustness to missing modalities |
+| Gradient clipping | 1.0 |
+| Seed | 42 |
+
+---
+
+## 8️⃣ Evaluation
+
+[`src/evaluation/evaluate_all.py`](src/evaluation/evaluate_all.py)
+
+### Kaplan–Meier curves by predicted-risk tertile (test set)
+
+| Cox PH | Random Survival Forest |
+|---|---|
+| ![](figures/km_by_risk_Cox_PH.png) | ![](figures/km_by_risk_RSF.png) |
+
+| Autoencoder | Transformer Fusion | Adaptive Ensemble |
+|---|---|---|
+| ![](figures/km_by_risk_Autoencoder.png) | ![](figures/km_by_risk_Transformer.png) | ![](figures/km_by_risk_Ensemble.png) |
+
+All log-rank tests reach p < 10⁻⁴⁷; deep models reach p < 10⁻⁶⁰ — risk groups separate dramatically.
+
+### Time-dependent AUC
+
+![Time-dependent AUC](figures/time_dependent_auc.png)
+
+### Risk score distributions (event vs censored)
+
+![Risk score distribution](figures/risk_score_distribution.png)
+
+### Modality ablation (Cox + RSF on subsets)
+
+![Ablation table](figures/ablation_table.png)
+
+Full ablation CSV at [`figures/results_ablation.csv`](figures/results_ablation.csv).
+
+### Interactive dashboards
+
+Open these HTML files in your browser:
+
+| File | What it shows |
+|---|---|
+| [`figures/dashboard.html`](figures/dashboard.html) | 6-panel Plotly dashboard: bar chart, density, KM curves, time-AUC, risk-vs-time scatter, summary table |
+| [`figures/km_interactive.html`](figures/km_interactive.html) | KM curves with model toggle + hover |
+| [`figures/cindex_interactive.html`](figures/cindex_interactive.html) | Interactive C-index bar chart |
+
+---
+
+## 9️⃣ Reproducibility
+
+### Run order
+
+```bash
+# 1. Splits + features (~25 min total)
+python main.py --stage data       # locked train/val/test splits
+python main.py --stage features   # clinical + expression + mutation
+
+# 2. Pathology fine-tune (~10 h on RTX 3090)
+python main.py --stage pathology-qa       # 45,518 train QA pairs
+python -m src.training.distill_cot        # (optional) GPT-4o-mini CoT, ~$15
+python main.py --stage pathology-train    # → models/PathQwen2.5/final/ + HF Hub
+
+# 3. Extract pathology features (~3 h joint / ~24 h per-task)
+python -m src.training.extract_features \
+    --config configs/pathology_llm.yaml \
+    --adapter-dir models/PathQwen2.5/final
+
+# 4. Survival models (~10 min total)
+python -m src.models.baselines  # Cox + RSF
+python -m src.models.train_multimodal --model autoencoder
+python -m src.models.train_multimodal --model transformer
+python -m src.models.train_multimodal --model ensemble
+
+# 5. Evaluate + generate every figure
+python -m src.evaluation.pathology_eval
+python -m src.evaluation.evaluate_all
+```
+
+### Hardware + software
+
+| Component | Spec |
+|---|---|
+| GPU | NVIDIA RTX 3090 (24 GB) |
+| RAM | 46 GB |
+| Disk | ~30 GB needed |
+| Python | 3.11 |
+| PyTorch | 2.6.0 + cu126 |
+| Unsloth | 2026.5.2 |
+| FlashAttention 2 | 2.8.3 |
+| bitsandbytes | 0.43 + |
+
+### File layout
+
+```
+configs/                    paths + hyperparams (data, pathology_llm, multimodal)
+data/
+  raw/                      cBioPortal CSV, GDC RNA-Seq TSVs, MAF.gz, pathology text
+  interim/                  maf_paths_from_new_json2.csv (file_id mapping)
+  processed/
+    merged_tcga_data_text_dedup.csv     8,459-patient harmonized cohort
+    splits/splits.json                  5,919 / 1,266 / 1,266 (locked)
+    features/                           clinical / expression / mutation / pathology_*
+    pathology/qa_*.jsonl                45,518 / 9,734 / 9,690 train/val/test QA
+src/
+  data/                     splits, ingest_mutation
+  features/                 clinical, expression, mutation
+  training/                 schema, build_multitask_qa, distill_cot, unsloth_finetune,
+                            extract_features, extract_features_per_task
+  models/                   losses, data_loaders, baselines,
+                            autoencoder, transformer, ensemble, train_multimodal
+  evaluation/               metrics, stratification, pathology_eval, evaluate_all
+models/                     LoRA adapter + fitted baselines + multimodal checkpoints
+figures/                    every PNG/HTML/CSV/MD report
+main.py                     orchestrator: --stage <name|group>
+START_HERE.md               full runbook
+RESEARCH.md                 comprehensive methods documentation
+CLAUDE.md                   project memory file (Claude reads automatically)
+hfDeployment/               Gradio app for HF Spaces demo
 ```
 
 ---
 
-## 📖 Citation
+## 🔬 Deployed demo
 
-If you use this work in your research, please cite:
+The fine-tuned PathQwen2.5 is live on Hugging Face Hub:
+**[`drkareemkamal/PathQwen2.5`](https://huggingface.co/drkareemkamal/PathQwen2.5)**
+
+A Gradio demo app under [`hfDeployment/`](hfDeployment/) exposes the full pipeline:
+
+| Tab | Functionality |
+|---|---|
+| 🩺 Patient input | Pathology textbox + clinical fields; 🎲 random test patient |
+| 🔬 PathQwen2.5 extraction | Returns JSON with all 9 fields |
+| 📈 Survival prediction | Runs every loaded model with interactive plotly survival curves + risk bar + seaborn KM |
+| 📊 Model leaderboard | Auto-built from `results.json` files |
+| ℹ️ About | Architecture summary + disclaimer |
+
+---
+
+## 📚 Citation
+
+If you use this code or the PathQwen2.5 model, please cite:
 
 ```bibtex
-@software{kamal2026cancer_survival_text,
-  title={Cancer Survival Prediction from Pathological Text Reports using Fine-Tuned LLMs},
-  author={Kareem Kamal},
-  year={2026},
-  url={https://github.com/drkareemkamal/cancer-survival-analysis}
+@misc{kamal2026pathqwen,
+  author       = {Kamal, Kareem},
+  title        = {PathQwen2.5: Multimodal Cancer Survival Prediction with LLM-extracted Pathology Features},
+  year         = {2026},
+  howpublished = {\url{https://huggingface.co/drkareemkamal/PathQwen2.5}}
 }
 ```
 
-### Related Work
+Builds on:
 
-- [Bio_ClinicalBERT](https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT) — Alsentzer et al., 2019
-- [OpenBioLLM-8B](https://huggingface.co/aaditya/Llama3-OpenBioLLM-8B) — Saama AI Labs, 2024 (based on Meta-Llama-3-8B)
-- [TCGA](https://portal.gdc.cancer.gov/) — The Cancer Genome Atlas Program
-- [Cox PH Model](https://doi.org/10.1111/j.2517-6161.1972.tb00899.x) — Cox, 1972
+```bibtex
+@article{saluja2025cancer,
+  author       = {Saluja, Rachit and Rosenthal, Jacob and Windon, Annika and
+                  Artzi, Yoav and Pisapia, David J. and Liechty, Benjamin L. and
+                  Sabuncu, Mert R.},
+  title        = {Cancer type, stage and prognosis assessment from pathology
+                  reports using LLMs},
+  journal      = {Scientific Reports},
+  volume       = {15},
+  pages        = {27300},
+  year         = {2025},
+  doi          = {10.1038/s41598-025-10709-4}
+}
+```
 
 ---
 
-## 📧 Contact
+## ⚠️ Disclaimer
 
-- **Dr. Kareem Kamal**
-- GitHub: [@drkareemkamal](https://github.com/drkareemkamal)
-- HuggingFace: [drkareemkamal](https://huggingface.co/drkareemkamal)
+Research tool only — **not approved for clinical use**. All claims are based on retrospective TCGA data. Always consult qualified medical professionals for clinical decisions.
 
----
+## 📄 License
 
-*This project is for research purposes. Always consult qualified medical professionals for clinical decisions.*
-uv pip install --upgrade "torch>=2.6" --index-url https://download.pytorch.org/whl/cu124
+MIT — see [`LICENSE`](LICENSE).
+
+## 👤 Author
+
+**Dr. Kareem Kamal** · medical-AI researcher
+[GitHub](https://github.com/drkareemkamal) · [Hugging Face](https://huggingface.co/drkareemkamal)
