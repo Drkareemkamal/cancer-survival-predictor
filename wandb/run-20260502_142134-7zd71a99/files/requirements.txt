@@ -70,7 +70,7 @@ lifelines==0.30.0
 click==8.3.3
 pyparsing==3.3.2
 parso==0.8.7
-urllib3==2.6.3
+urllib3==2.7.0
 tokenizers==0.22.2
 wcwidth==0.6.0
 nvidia-curand-cu12==10.3.5.147
